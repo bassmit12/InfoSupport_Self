@@ -5,8 +5,6 @@ const Home = () => {
   return (
     <div>
         <Item name="Frietjes"/>
-        <Item name="Frikandel"/>
-        <Item name="Bami"/>
     </div>
   )
 }

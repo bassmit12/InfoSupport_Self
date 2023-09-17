@@ -5,19 +5,21 @@ const Button_count = () => {
 
   return (
     <div>
-      <p className="mb-4">amount: {count}</p>
-      <button
-        className="mr-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={() => setCount(count + 1)}
-      >
-        +1
-      </button>
-      <button
-        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-        onClick={() => setCount(count - 1)}
-      >
-        -1
-      </button>
+      <div>
+        <p className="mb-4">amount: {count}</p>
+        <button
+          className="px-4 py-2 rounded border border-black mr-1"
+          onClick={() => setCount(count - 1)}
+        >
+          -1
+        </button>
+        <button
+          className="mr-2 px-4 py-2 rounded border border-black"
+          onClick={() => setCount(count + 1)}
+        >
+          +1
+        </button>
+      </div>
     </div>
   );
 };
