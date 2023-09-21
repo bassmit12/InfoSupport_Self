@@ -1,12 +1,12 @@
-import React from 'react'
-import Item from '../components/Item'
+import React from "react";
+import Items from "../components/Food_item/Items";
 
 const Home = () => {
   return (
     <div>
-        <Item name="Frietjes"/>
+      <Items />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
