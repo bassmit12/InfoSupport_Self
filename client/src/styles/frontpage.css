@@ -1,0 +1,9 @@
+.bg-image {
+  background-image: url("https://wallpapers.com/images/hd/4k-food-fancy-food-plating-y48pwsir6u6w5iws.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-image-cover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
