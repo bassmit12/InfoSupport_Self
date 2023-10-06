@@ -1,4 +1,5 @@
 import React from "react";
+import Plus_Min_Button from "../components/Plus_Min_Button";
 
 const ItemDetails = () => {
   return (
@@ -20,11 +21,7 @@ const ItemDetails = () => {
           </p>
           <div className="mt-10 flex flex-row ">
             <h2 className="text-gray-900 poppins text-2xl font-bold ">$9.99</h2>
-
-            <div className="border border-gray-100 rounded-lg flex flex-row ml-5 px-5">
-              <p>+</p>
-              <p>-</p>
-            </div>
+            <Plus_Min_Button />
           </div>
           <button className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full mt-8 transform transition duration-300 hover:scale-105 flex flex-row">
             <div className="mr-2">
