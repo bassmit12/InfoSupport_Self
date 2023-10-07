@@ -10,6 +10,8 @@ const TransactionPage = () => {
         <Transaction />
         <Transaction />
         <Transaction />
+        <Transaction />
+
         <div className="flex flex-row justify-between items-center">
           <button className="bg-primary text-white px-9 py-3 text-xl focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105">
             Order Now

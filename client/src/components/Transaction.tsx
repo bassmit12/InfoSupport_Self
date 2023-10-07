@@ -15,7 +15,9 @@ const Transaction = () => {
         </div>
 
         <h2 className="text-gray-900 poppins text-3xl font-semibold">$9.99</h2>
-        <button className="text-3xl font-semibold">X</button>
+        <button className="text-3xl font-semibold transform transition duration-300 hover:scale-105">
+          X
+        </button>
       </div>
       <hr className="h-px bg-[#F3F4F6] border-0  my-8"></hr>
     </div>
