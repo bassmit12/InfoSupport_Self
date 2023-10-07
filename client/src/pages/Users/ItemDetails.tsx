@@ -1,5 +1,5 @@
 import React from "react";
-import Plus_Min_Button from "../components/Plus_Min_Button";
+import Plus_Min_Button from "../../components/Plus_Min_Button";
 
 const ItemDetails = () => {
   return (

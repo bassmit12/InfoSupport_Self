@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/frontpage.css";
+import "../../styles/frontpage.css";
 import Home from "./Home";
 
 const FrontPage = () => {

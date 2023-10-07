@@ -1,5 +1,5 @@
 import React from "react";
-import Items from "../components/Food_item/Items";
+import Items from "../../components/Food_item/Items";
 
 const Home = () => {
   return (

@@ -1,6 +1,6 @@
-import FrontPage from "./pages/FrontPage";
-import Home from "./pages/Home";
-import ItemDetails from "./pages/ItemDetails";
+import FrontPage from "./pages/Users/FrontPage";
+import Home from "./pages/Users/Home";
+import ItemDetails from "./pages/Users/ItemDetails";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
