@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/frontpage.css";
-import Home from "./Home";
 import { Link } from "react-router-dom";
+import About from "./About";
 
 const FrontPage = () => {
   return (
@@ -29,6 +29,7 @@ const FrontPage = () => {
           </div>
         </div>
       </div>
+      <About />
     </>
   );
 };

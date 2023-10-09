@@ -10,8 +10,9 @@ const Header = () => {
           <img src={Logo} className="w-56 h-auto" />
         </Link>
 
-        <div className="flex flex-row gap-x-3 px-6">
-          <div>Tafel</div>
+        <div className="flex flex-row gap-x-5 px-6 ">
+          <h1>Tafel 1</h1>
+
           <div>ShoppingCart</div>
           <div>Taal</div>
         </div>
