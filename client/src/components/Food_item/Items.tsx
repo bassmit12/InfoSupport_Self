@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Item from "./Item";
-import Item_Skeleton from "./Item_Skeleton";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState("Breakfast");
-  const [loading, setLoading] = useState(false);
-  //const [foods] = useFetch();
 
-  //loading
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleMenuTabs = (type: any) => {
     setMenuTab(type);
   };
