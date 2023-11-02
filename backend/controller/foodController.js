@@ -3,7 +3,7 @@ import Food from "../models/foodModel.js";
 const getFoodFeed = async (req, res) => {
   try {
     const foodItems = await Food.find();
-    res.status(200).json({ foodItems });
+    res.status(200).json(foodItems);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -13,7 +13,8 @@ const createFood = async (req, res) => {
   try {
     const {
       name,
-      description,
+      descriptionLong,
+      descriptionShort,
       price,
       category,
       imageURL,
@@ -21,23 +22,31 @@ const createFood = async (req, res) => {
       dietaryInfo,
     } = req.body;
 
-    if (!name || !description || !price || !category || !imageURL) {
+    if (
+      !name ||
+      !descriptionLong ||
+      !descriptionShort ||
+      !price ||
+      !category ||
+      !imageURL
+    ) {
       return res.status(400).json({
         message:
-          "Please provide all fields (Name, Description, Price, Category and imageURL are all required)",
+          "Please provide all fields (Name, DescriptionLong, DescriptionShort, Price, Category and imageURL are all required)",
       });
     }
 
-    const maxLength = 500;
-    if (description.length > maxLength) {
+    const maxLengthDescriptionLong = 1000;
+    if (descriptionLong.length > maxLengthDescriptionLong) {
       return res.status(400).json({
-        message: `Description must be less than ${maxLength} characters`,
+        message: `Description must be less than ${maxLengthDescriptionLong} characters`,
       });
     }
 
     const newFood = new Food({
       name,
-      description,
+      descriptionLong,
+      descriptionShort,
       price,
       category,
       imageURL,

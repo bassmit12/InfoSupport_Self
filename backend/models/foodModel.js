@@ -6,7 +6,11 @@ const foodSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
+    descriptionLong: {
+      type: String,
+      required: true,
+    },
+    descriptionShort: {
       type: String,
       required: true,
     },
@@ -29,8 +33,7 @@ const foodSchema = new mongoose.Schema(
     },
     dietaryInfo: {
       type: String,
-      required: true,
-      enum: ["Vegetarian", "Vegan", "Gluten-free"],
+      enum: ["Vegetarian", "Vegan", "Gluten-free", ""],
     },
   },
   {

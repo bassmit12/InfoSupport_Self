@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 interface ItemProps {
   image: string;
   title: string;
-  description: string;
+  descriptionShort: string;
   price: number;
   foodType: string;
 }
 
-const Item = ({ image, title, description, price, foodType }: ItemProps) => {
+const Item = ({
+  image,
+  title,
+  descriptionShort,
+  price,
+  foodType,
+}: ItemProps) => {
   return (
     <Link to="/details">
       <div className="bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">
@@ -22,19 +28,18 @@ const Item = ({ image, title, description, price, foodType }: ItemProps) => {
           src={image}
           alt=""
         />
-        <div className="flex flex-col items-center my-3 space-y-2">
+        <div className="flex flex-col items-center my-3 space-y-6">
           <h1 className="text-gray-900 poppins text-lg">{title}</h1>
           <p className="text-gray-500 poppins text-sm text-center">
-            {description.slice(0, 50)}
+            {descriptionShort}
           </p>
           <h2 className="text-gray-900 poppins text-2xl font-semibold">
             ${price}
           </h2>
-          <Link to="/TransactionPage">
-            <button className="bg-primary text-white px-8 py-2 focus:outline-none poppins rounded-full mt-24 transform transition duration-300 hover:scale-105">
-              Order Now
-            </button>
-          </Link>
+
+          <button className="bg-primary text-white px-8 py-2 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 mt-10">
+            Order Now
+          </button>
         </div>
       </div>
     </Link>

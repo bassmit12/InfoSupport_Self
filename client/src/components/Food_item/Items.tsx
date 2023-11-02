@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState("Breakfast");
+  const [foodItems, setFoodItems] = useState([]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleMenuTabs = (type: any) => {
+  useEffect(() => {
+    // Fetch data from the backend when the component mounts
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/food/feed");
+        const data = await res.json();
+
+        if (data.error) {
+          console.log(data.error);
+          return;
+        }
+
+        setFoodItems(data);
+      } catch (error) {
+        console.error("Error fetching food items:", error);
+      }
+    };
+
+    fetchData(); // Call the fetch function
+  }, []); // The empty array ensures that this effect runs once after the initial render
+
+  const handleMenuTabs = (type) => {
     setMenuTab(type);
   };
+
+  const filteredFoodItems = foodItems.filter(
+    (item) => item.category === menuTab
+  );
 
   return (
     <section className="my-12 max-w-screen-xl mx-auto px-6">
@@ -44,69 +69,20 @@ const Items = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
-        <Item
-          image="https://joflow.nl/cdn/shop/products/Voorfoto_3bc2c4c8-01a8-4565-98f9-dadbbbea9e41_1200x1200.jpg?v=1657801731"
-          title="Borrel Plaat"
-          description="A lovely Borrelplaat to share with friends"
-          price={9.99}
-          foodType="Lunch"
-        />
+        {filteredFoodItems.length === 0 ? (
+          <p>No items available in this category.</p>
+        ) : (
+          filteredFoodItems.map((item) => (
+            <Item
+              key={item._id} // Assuming each food item has a unique ID property
+              image={item.imageURL}
+              title={item.name}
+              description={item.descriptionShort}
+              price={item.price}
+              foodType={item.category}
+            />
+          ))
+        )}
       </div>
     </section>
   );
