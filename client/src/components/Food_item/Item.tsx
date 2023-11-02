@@ -24,7 +24,7 @@ const Item = ({
           {foodType}
         </span>
         <img
-          className="w-64 h-52 mx-auto transform transition duration-300 hover:scale-105"
+          className="w-64 h-48 mx-auto transform transition duration-300 hover:scale-105"
           src={image}
           alt=""
         />

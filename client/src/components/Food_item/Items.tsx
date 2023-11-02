@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
+import Item_Skeleton from "./Item_Skeleton";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState("Breakfast");
   const [foodItems, setFoodItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch data from the backend when the component mounts
@@ -14,12 +16,15 @@ const Items = () => {
 
         if (data.error) {
           console.log(data.error);
+          setLoading(false);
           return;
         }
 
         setFoodItems(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching food items:", error);
+        setLoading(false);
       }
     };
 
@@ -69,9 +74,16 @@ const Items = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
-        {filteredFoodItems.length === 0 ? (
+        {loading ? (
+          // Display skeleton component while loading
+          Array.from({ length: 3 }).map((_, index) => (
+            <Item_Skeleton key={index} />
+          ))
+        ) : filteredFoodItems.length === 0 ? (
+          // Display message when no items are available
           <p>No items available in this category.</p>
         ) : (
+          // Display actual item components when data is loaded
           filteredFoodItems.map((item) => (
             <Item
               key={item._id} // Assuming each food item has a unique ID property
