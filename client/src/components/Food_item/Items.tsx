@@ -89,7 +89,7 @@ const Items = () => {
               key={item._id} // Assuming each food item has a unique ID property
               image={item.imageURL}
               title={item.name}
-              description={item.descriptionShort}
+              descriptionShort={item.descriptionShort}
               price={item.price}
               foodType={item.category}
             />
