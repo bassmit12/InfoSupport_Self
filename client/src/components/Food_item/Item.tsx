@@ -28,9 +28,9 @@ const Item = ({
           src={image}
           alt=""
         />
-        <div className="flex flex-col items-center my-3 space-y-6">
+        <div className="flex flex-col items-center my-3 space-y-4">
           <h1 className="text-gray-900 poppins text-lg">{title}</h1>
-          <p className="text-gray-500 poppins text-sm text-center">
+          <p className="text-gray-500 poppins text-sm text-center h-14">
             {descriptionShort}
           </p>
           <h2 className="text-gray-900 poppins text-2xl font-semibold">
