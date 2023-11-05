@@ -90,6 +90,7 @@ const Items = () => {
           filteredFoodItems.map((item) => (
             <Item
               key={item._id} // Assuming each food item has a unique ID property
+              id={item._id}
               image={item.imageURL}
               title={item.name}
               descriptionShort={item.descriptionShort}

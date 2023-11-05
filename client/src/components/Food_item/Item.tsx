@@ -1,8 +1,7 @@
-import React from "react";
-import Item_Skeleton from "./Item_Skeleton";
 import { Link } from "react-router-dom";
 
 interface ItemProps {
+  id: string;
   image: string;
   title: string;
   descriptionShort: string;
@@ -11,6 +10,7 @@ interface ItemProps {
 }
 
 const Item = ({
+  id,
   image,
   title,
   descriptionShort,
@@ -18,7 +18,7 @@ const Item = ({
   foodType,
 }: ItemProps) => {
   return (
-    <Link to="/details">
+    <Link to={`/item/${id}`}>
       <div className="bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">
         <span className="bg-red-100 border border-red-500 rounded-full text-primary text-sm poppins px-4 py-1 inline-block mb-4 ">
           {foodType}

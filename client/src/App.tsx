@@ -10,7 +10,7 @@ function App() {
     <Suspense fallback="loading">
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/details" element={<ItemDetails />} />
+        <Route path="/Item/:id" element={<ItemDetails />} />
         <Route path="/TransactionPage" element={<TransactionPage />} />
         <Route path="/Menu" element={<Home />} />
       </Routes>

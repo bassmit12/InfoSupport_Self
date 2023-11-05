@@ -63,4 +63,21 @@ const createFood = async (req, res) => {
   }
 };
 
-export { getFoodFeed, createFood };
+const getItemInfo = async (req, res) => {
+  try {
+    const foodId = req.params.id;
+    const foodItem = await Food.findById(foodId);
+    if (!foodItem) {
+      return res.status(404).json({ message: "Food item not found" });
+    }
+    res.status(200).json(foodItem);
+  } catch (error) {
+    // If the error is due to an invalid object id format
+    if (error.kind === "ObjectId") {
+      return res.status(400).json({ message: "Invalid food id format" });
+    }
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export { getFoodFeed, createFood, getItemInfo };
