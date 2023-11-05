@@ -10,7 +10,7 @@ const ItemDetails = () => {
       <section className="my-20 max-w-screen-xl mx-auto px-6">
         <div className="flex items-center justify-center space-x-6">
           <div className="flex-col flex-1">
-            <h1 className="text-5xl mb-9 font-semibold">Borrelplank</h1>
+            <h1 className="text-5xl mb-9 font-semibold">Hier komt eten</h1>
             <p className="text-xl font-light">
               Savor the essence of Dutch culinary artistry with our Borrelplank.
               A tantalizing array of creamy Gouda, aged Edam, and bold Maasdam
