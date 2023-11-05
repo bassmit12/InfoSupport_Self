@@ -1,40 +1,49 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
 import { useTranslation } from "react-i18next";
-import { LANGUAGES } from "../../constants/Languages.ts";
+
+interface FoodItem {
+  _id: string;
+  name: string;
+  descriptionShort: string;
+  price: number;
+  category: string;
+  imageURL: string;
+}
 
 const Items = () => {
-  const [menuTab, setMenuTab] = useState("Breakfast");
-  const [foodItems, setFoodItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { i18n, t } = useTranslation();
+  const [menuTab, setMenuTab] = useState<string>("Breakfast");
+  const [foodItems, setFoodItems] = useState<FoodItem[]>([]); // Use the FoodItem interface for the state
+  const [loading, setLoading] = useState<boolean>(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    // Fetch data from the backend when the component mounts
     const fetchData = async () => {
       try {
         const res = await fetch("/api/food/feed");
         const data = await res.json();
 
-        if (data.error) {
-          console.log(data.error);
-          setLoading(false);
-          return;
+        if (res.ok) {
+          setFoodItems(data as FoodItem[]); // Cast the data to an array of FoodItem
+        } else {
+          throw new Error(data.error || "Error fetching food items");
         }
-
-        setFoodItems(data);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching food items:", error);
+        if (error instanceof Error) {
+          console.error("Error fetching food items:", error.message);
+        } else {
+          console.error("Error fetching food items:", error);
+        }
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchData(); // Call the fetch function
-  }, []); // The empty array ensures that this effect runs once after the initial render
+    fetchData();
+  }, []);
 
-  const handleMenuTabs = (type) => {
+  const handleMenuTabs = (type: string) => {
     setMenuTab(type);
   };
 
