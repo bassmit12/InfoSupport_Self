@@ -80,4 +80,8 @@ const getItemInfo = async (req, res) => {
   }
 };
 
-export { getFoodFeed, createFood, getItemInfo };
+const getCart = async (req, res) => {};
+
+const putItemInCart = async (req, res) => {};
+
+export { getFoodFeed, createFood, getItemInfo, getCart, putItemInCart };

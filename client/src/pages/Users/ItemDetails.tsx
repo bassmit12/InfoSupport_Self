@@ -20,6 +20,8 @@ const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState(1); // Default quantity is 1
+  const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -46,6 +48,13 @@ const ItemDetails = () => {
 
     fetchFoodInfo();
   }, [id]);
+
+  useEffect(() => {
+    if (foodItem) {
+      setTotalPrice(quantity * foodItem.price);
+    }
+  }, [quantity, foodItem]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -77,11 +86,14 @@ const ItemDetails = () => {
               </p>
               <div className="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
                 <h2 className="text-3xl font-bold text-black poppins select-none">
-                  ${foodItem.price.toFixed(2)}
+                  ${totalPrice?.toFixed(2)}
                 </h2>
-                <Plus_Min_Button />
+                <Plus_Min_Button
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                />
               </div>
-              <Link to="/TransactionPage">
+              <Link to="/Cart">
                 <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
                   <button className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full mt-8 transform transition duration-300 hover:scale-105 flex flex-row">
                     <div className="mr-2">
