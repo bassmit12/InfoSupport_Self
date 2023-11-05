@@ -7,29 +7,33 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  build-and-test-backend:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: ["18.x"] # This will use the latest LTS version of Node.js
+        node-version: ["18.x"] # Latest LTS version of Node.js
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          cache-dependency-path: backend/package-lock.json
 
-      - name: Install Dependencies
+      - name: Install Backend Dependencies
         run: npm ci
+        working-directory: ./backend
 
-      - name: Run Tests
+      - name: Run Backend Tests
         run: npm test
+        working-directory: ./backend
 
-      - name: Build
+      - name: Build Backend
         run: npm run build
+        working-directory: ./backend
 
-      # Deployment job can be added here later, once secrets are set up.
+      # The deployment step will go here once you have secrets set up
