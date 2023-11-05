@@ -1,4 +1,7 @@
 {
   "table": "Table",
-  "shoppingcart": "Shopping Cart"
+  "shoppingcart": "Shopping Cart",
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "dinner": "Dinner"
 }

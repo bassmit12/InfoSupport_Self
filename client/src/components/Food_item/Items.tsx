@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
+import { useTranslation } from "react-i18next";
+import { LANGUAGES } from "../../constants/Languages.ts";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState("Breakfast");
   const [foodItems, setFoodItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     // Fetch data from the backend when the component mounts
@@ -50,7 +53,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Breakfast")}
         >
-          Breakfast
+          {t("breakfast")}
         </p>
         <p
           className={
@@ -60,7 +63,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Lunch")}
         >
-          Lunch
+          {t("lunch")}
         </p>
         <p
           className={
@@ -70,7 +73,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Dinner")}
         >
-          Dinner
+          {t("dinner")}
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
