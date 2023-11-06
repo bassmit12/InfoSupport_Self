@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex flex-row gap-x-5 px-6 ">
           <h1>{t("table")} 1</h1>
 
-          <Link to="/TransactionPage">
+          <Link to="/Cart">
             <div>{t("shoppingcart")}</div>
           </Link>
 
