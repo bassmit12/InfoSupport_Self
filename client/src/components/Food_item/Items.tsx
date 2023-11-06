@@ -59,7 +59,7 @@ const Items = () => {
         <h1 className="text-4xl font-medium uppercase">Menu</h1>
         <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
       </div>
-      <div className="flex items-center justify-center space-x-6">
+      <div className="flex items-center justify-center space-x-6 mr-6">
         <p
           className={
             menuTab === "Breakfast"
