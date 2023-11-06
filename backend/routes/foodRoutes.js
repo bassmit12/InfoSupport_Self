@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/feed", getFoodFeed);
 router.get("/item/:id", getItemInfo);
-router.get("/getCart", getItemInfo);
+router.get("/getCart", getCart);
 
 router.post("/createFood", createFood);
 router.post("/putItemInCart/:id", putItemInCart);
