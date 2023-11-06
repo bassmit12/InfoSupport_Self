@@ -54,6 +54,11 @@ const Items = () => {
 
   return (
     <section className="my-12 max-w-screen-xl mx-auto px-6">
+      <div className="flex justify-center items-center mb-20">
+        <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
+        <h1 className="text-4xl font-medium uppercase">Menu</h1>
+        <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
+      </div>
       <div className="flex items-center justify-center space-x-6">
         <p
           className={

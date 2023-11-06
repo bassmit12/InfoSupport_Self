@@ -6,6 +6,11 @@ const TransactionPage = () => {
   return (
     <>
       <Header />
+      <div className="flex justify-center items-center my-10">
+        <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
+        <h1 className="text-4xl font-medium uppercase">Order</h1>
+        <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
+      </div>
       <section className="my-20 max-w-screen-xl mx-auto px-6">
         <Transaction />
         <Transaction />
