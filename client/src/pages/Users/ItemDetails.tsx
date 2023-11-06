@@ -81,6 +81,13 @@ const ItemDetails = () => {
               <h1 className="text-center md:text-left lg:text-left text-3xl lg:text-4xl font-semibold poppins pb-4 text-gray-700 select-none">
                 {foodItem.name}
               </h1>
+              <div className="flex justify-center md:justify-normal lg:justify-normal">
+                {foodItem.dietaryInfo && ( // This line checks if dietaryInfo is not an empty string
+                  <span className="bg-green-100 border border-[#18BD63] rounded-full text-[#18BD63] text-sm poppins px-4 py-1 inline-block mb-4 text-center md:text-left lg:text-left">
+                    {foodItem.dietaryInfo}
+                  </span>
+                )}
+              </div>
 
               <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none">
                 {foodItem.descriptionLong}
