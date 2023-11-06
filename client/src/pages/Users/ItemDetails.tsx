@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Plus_Min_Button from "../../components/Plus_Min_Button";
-import Header from "../../components/Header";
+import Plus_Min_Button from "../../components/ui/Plus_Min_Button";
+import Header from "../../components/ui/Header";
 
 // Define the interface for the food item structure
 interface FoodItem {
@@ -81,9 +81,19 @@ const ItemDetails = () => {
               <h1 className="text-center md:text-left lg:text-left text-3xl lg:text-4xl font-semibold poppins pb-4 text-gray-700 select-none">
                 {foodItem.name}
               </h1>
+
               <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none">
                 {foodItem.descriptionLong}
               </p>
+              {foodItem.ingredients && foodItem.ingredients.length > 0 && (
+                <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none mt-5">
+                  <strong className="leading-relaxed select-none">
+                    Ingredients:{" "}
+                  </strong>
+                  {foodItem.ingredients.join(", ")}
+                </p>
+              )}
+
               <div className="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
                 <h2 className="text-3xl font-bold text-black poppins select-none">
                   ${totalPrice?.toFixed(2)}
@@ -95,7 +105,7 @@ const ItemDetails = () => {
               </div>
               <Link to="/Cart">
                 <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
-                  <button className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full mt-8 transform transition duration-300 hover:scale-105 flex flex-row">
+                  <button className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 flex flex-row">
                     <div className="mr-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

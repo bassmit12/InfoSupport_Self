@@ -7,6 +7,7 @@ interface ItemProps {
   descriptionShort: string;
   price: number;
   foodType: string;
+  dietaryInfo: string;
 }
 
 const Item = ({
@@ -16,13 +17,22 @@ const Item = ({
   descriptionShort,
   price,
   foodType,
+  dietaryInfo,
 }: ItemProps) => {
   return (
     <Link to={`/item/${id}`}>
       <div className="bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">
-        <span className="bg-red-100 border border-red-500 rounded-full text-primary text-sm poppins px-4 py-1 inline-block mb-4 ">
-          {foodType}
-        </span>
+        <div className="flex justify-between">
+          <span className="bg-red-100 border border-red-500 rounded-full text-primary text-sm poppins px-4 py-1 inline-block mb-4 ">
+            {foodType}
+          </span>
+          {dietaryInfo && ( // This line checks if dietaryInfo is not an empty string
+            <span className="bg-green-100 border border-[#18BD63] rounded-full text-[#18BD63] text-sm poppins px-4 py-1 inline-block mb-4 ">
+              {dietaryInfo}
+            </span>
+          )}
+        </div>
+
         <img
           className="w-64 h-48 mx-auto transform transition duration-300 hover:scale-105"
           src={image}

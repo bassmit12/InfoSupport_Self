@@ -10,6 +10,7 @@ interface FoodItem {
   price: number;
   category: string;
   imageURL: string;
+  dietaryInfo: string;
 }
 
 const Items = () => {
@@ -105,6 +106,7 @@ const Items = () => {
               descriptionShort={item.descriptionShort}
               price={item.price}
               foodType={item.category}
+              dietaryInfo={item.dietaryInfo}
             />
           ))
         )}

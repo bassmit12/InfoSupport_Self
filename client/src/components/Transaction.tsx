@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Plus_Min_Button from "./Plus_Min_Button";
+import Plus_Min_Button from "./ui/Plus_Min_Button";
 
 const Transaction = () => {
   const [quantity, setQuantity] = useState(1); // Default quantity is 1
