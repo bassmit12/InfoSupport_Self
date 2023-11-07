@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Plus_Min_Button from "../../components/ui/Plus_Min_Button";
 import Header from "../../components/ui/Header";
+import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleton";
 
 // Define the interface for the food item structure
 interface FoodItem {
@@ -55,16 +56,22 @@ const ItemDetails = () => {
     }
   }, [quantity, foodItem]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <>
+        <Header />
+        <div>Error: {error}</div>
+      </>
+    );
   }
 
-  if (!foodItem) {
-    return <div>Food item not found.</div>;
+  if (loading || !foodItem) {
+    return (
+      <>
+        <Header />
+        <ItemDetails_Skeleton />
+      </>
+    );
   }
 
   // Replace the static content with dynamic data from `foodItem`
