@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "../backend/db/connectDB.js";
 import cookieParser from "cookie-parser";
 import foodRoutes from "./routes/foodRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -15,6 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/food", foodRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
