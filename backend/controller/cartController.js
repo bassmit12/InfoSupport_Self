@@ -1,4 +1,7 @@
 import User from "../models/userModel.js";
+import Cart from "../models/cartModel.js"; // Replace with the correct path to the Cart model
+
+// Rest of your code
 
 // To add items to the cart
 const addToCart = async (req, res) => {
@@ -84,9 +87,57 @@ const convertCartToOrder = async (req, res) => {
   }
 };
 
-const removeFromCart = async (req, res) => {};
+const removeFromCart = async (req, res) => {
+  const userId = req.user._id;
+  const { foodId } = req.body; // Assuming foodId is passed as a URL parameter
 
-const updateCartQuantity = async (req, res) => {};
+  try {
+    let cart = await Cart.findOne({ user: userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    // Remove item from cart
+    cart.items = cart.items.filter(
+      (item) => item.food._id.toString() !== foodId
+    );
+    cart = await cart.save();
+
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const updateCartQuantity = async (req, res) => {
+  const userId = req.user._id;
+  const { foodId, quantity } = req.body;
+
+  try {
+    let cart = await Cart.findOne({ user: userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    // Update quantity for the specified item in the cart
+    const itemIndex = cart.items.findIndex(
+      (item) => item.food._id.toString() === foodId
+    );
+    if (itemIndex !== -1) {
+      cart.items[itemIndex].quantity = quantity;
+    } else {
+      return res.status(404).json({ message: "Item not found in the cart" });
+    }
+
+    cart = await cart.save();
+
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 // Add more functions as needed for updating and removing cart items
 
