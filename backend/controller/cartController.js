@@ -1,5 +1,7 @@
 import User from "../models/userModel.js";
-import Cart from "../models/cartModel.js"; // Replace with the correct path to the Cart model
+import Cart from "../models/cartModel.js";
+import Order from "../models/orderModel.js";
+import Food from "../models/foodModel.js";
 
 // Rest of your code
 
@@ -39,11 +41,11 @@ const addToCart = async (req, res) => {
 
 // To get the cart for a user
 const getCart = async (req, res) => {
-  const userId = req.user._id; // This should come from session or token
+  const userId = req.user._id;
   try {
-    let cart = await Cart.findOne({ user: userId }).populate("items.food");
+    const cart = await Cart.findOne({ user: userId }).populate("items.food");
     if (!cart) {
-      cart = await Cart.create({ user: userId });
+      return res.status(404).json({ message: "Cart not found" });
     }
     res.status(200).json(cart);
   } catch (error) {
@@ -51,92 +53,96 @@ const getCart = async (req, res) => {
   }
 };
 
+// To convert the cart into an order
 const convertCartToOrder = async (req, res) => {
-  const tableId = req.table._id; // Assuming you have table info in the request
+  const userId = req.user._id;
 
   try {
-    // Find the cart associated with the table
-    const cart = await Cart.findOne({ table: tableId });
+    // Retrieve the user's cart based on the user ID
+    const cart = await Cart.findOne({ user: userId }).populate("items.food");
+
+    // Check if the cart exists. If not, return a 404 error.
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    // Create a new order with items from the cart
+    // Calculate the total cost of the order
+    const total = calculateTotal(cart.items);
+
+    // Create a new order object using the retrieved cart items and the total cost
     const order = new Order({
-      table: tableId,
-      items: cart.items,
-      total: calculateTotal(cart.items), // You would implement this function based on item prices and quantities
-      status: "Pending", // Default status
+      table: cart.user, // Assuming the user ID represents the table in this case
+      items: cart.items.map((item) => ({
+        food: item.food,
+        quantity: item.quantity,
+      })),
+      total: total,
+      // You can add more fields to the order object if needed, such as notes or payment method
     });
 
-    // Save the new order
+    // Save the new order object to the database
     await order.save();
 
-    // Update the table's current order
-    await Table.findByIdAndUpdate(tableId, {
-      isOccupied: true,
-      currentOrder: order._id,
-    });
+    // Optionally, you can clear the user's cart after the order is successfully created
+    cart.items = [];
+    await cart.save();
 
-    // Clear the cart (or delete if you prefer)
-    await Cart.findByIdAndDelete(cart._id);
-
+    // Return the created order object in the response
     res.status(201).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// To remove an item from the cart
 const removeFromCart = async (req, res) => {
   const userId = req.user._id;
-  const { foodId } = req.body; // Assuming foodId is passed as a URL parameter
+  const { foodId } = req.body;
 
   try {
     let cart = await Cart.findOne({ user: userId });
-
-    if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+    if (cart) {
+      cart.items = cart.items.filter((item) => item.food._id != foodId);
+      cart = await cart.save();
+      res.status(200).json(cart);
+    } else {
+      res.status(404).json({ message: "Cart not found" });
     }
-
-    // Remove item from cart
-    cart.items = cart.items.filter(
-      (item) => item.food._id.toString() !== foodId
-    );
-    cart = await cart.save();
-
-    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// To update the quantity of an item in the cart
 const updateCartQuantity = async (req, res) => {
   const userId = req.user._id;
   const { foodId, quantity } = req.body;
 
   try {
     let cart = await Cart.findOne({ user: userId });
-
-    if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
-    }
-
-    // Update quantity for the specified item in the cart
-    const itemIndex = cart.items.findIndex(
-      (item) => item.food._id.toString() === foodId
-    );
-    if (itemIndex !== -1) {
-      cart.items[itemIndex].quantity = quantity;
+    if (cart) {
+      let itemIndex = cart.items.findIndex((p) => p.food._id == foodId);
+      if (itemIndex > -1) {
+        cart.items[itemIndex].quantity = quantity;
+        cart = await cart.save();
+        res.status(200).json(cart);
+      } else {
+        res.status(404).json({ message: "Item not found in cart" });
+      }
     } else {
-      return res.status(404).json({ message: "Item not found in the cart" });
+      res.status(404).json({ message: "Cart not found" });
     }
-
-    cart = await cart.save();
-
-    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// Function to calculate total based on items in the cart
+const calculateTotal = (items) => {
+  return items.reduce(
+    (total, item) => total + item.food.price * item.quantity,
+    0
+  );
 };
 
 // Add more functions as needed for updating and removing cart items
