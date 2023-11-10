@@ -2,54 +2,75 @@ import React, { useState, useEffect } from "react";
 import Transaction from "../../components/Transaction";
 import Header from "../../components/ui/Header";
 
-const TransactionPage = () => {
-  const [cartItems, setCartItems] = useState([]);
+interface Food {
+  _id: string;
+  // ... other properties of your Food model
+}
 
-  // Function to update cart item quantity
-  const updateCartItem = async (foodId, quantity) => {
+interface CartItem {
+  _id: string;
+  food: Food;
+  quantity: number;
+  // ... other properties if any
+}
+
+const TransactionPage = () => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const onUpdateQuantity = async (foodId: string, newQuantity: number) => {
     try {
+      // Make a PUT request to update the quantity
       const response = await fetch("/api/cart/update-quantity", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          foodId: foodId,
-          quantity: quantity,
+          foodId,
+          quantity: newQuantity,
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setCartItems(data.items || []); // Handle null or undefined items
+        // Update the local state with the new quantity
+        setCartItems((prevItems) =>
+          prevItems.map((item) =>
+            item.food._id === foodId ? { ...item, quantity: newQuantity } : item
+          )
+        );
+      } else {
+        // Handle error response from the API
+        console.error("Error updating quantity:", response.statusText);
       }
     } catch (error) {
-      console.error("Error updating cart item quantity:", error);
+      console.error("Error updating quantity:", error);
     }
   };
 
-  // Function to remove cart item
-  // Function to remove cart item
-  const removeCartItem = async (foodId) => {
+  const onRemoveItem = async (foodId: string) => {
     try {
+      // Make a DELETE request to remove the item
       const response = await fetch("/api/cart/remove", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          foodId: foodId,
+          foodId,
         }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setCartItems(data.items || []); // Handle null or undefined items
+        // Update the local state by filtering out the removed item
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item.food._id !== foodId)
+        );
       } else {
         // Handle error response from the API
+        console.error("Error removing item:", response.statusText);
       }
     } catch (error) {
-      console.error("Error removing cart item:", error);
+      console.error("Error removing item:", error);
     }
   };
 
@@ -92,8 +113,8 @@ const TransactionPage = () => {
           <Transaction
             key={item.food._id}
             item={item}
-            onUpdateQuantity={updateCartItem}
-            onRemoveItem={removeCartItem}
+            onUpdateQuantity={onUpdateQuantity}
+            onRemoveItem={onRemoveItem}
           />
         ))}
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-const Plus_Min_Button = () => {
-  const [quantity, setQuantity] = useState(1); // Default quantity is 1
+const Plus_Min_Button = ({ quantity, setQuantity }) => {
   return (
     <>
       <div className="border border-gray-100 rounded-full flex flex-row justify-around h-9 items-center w-24 select-none">
