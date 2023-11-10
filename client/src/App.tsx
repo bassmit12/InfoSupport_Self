@@ -8,6 +8,8 @@ import { useRecoilValue } from "recoil";
 import userAtom from "./atoms/userAtom.ts";
 import AuthPage from "./pages/Users/AuthPage.js";
 import LoginCard from "./components/auth/LoginCard.tsx";
+import SalesPage from "./pages/Staff/SalesPage.tsx";
+import KitchenPage from "./pages/Staff/KitchenPage.tsx";
 
 function App() {
   const user = useRecoilValue(userAtom);
@@ -15,17 +17,30 @@ function App() {
     <Suspense fallback="loading">
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/Item/:id" element={<ItemDetails />} />
-        <Route path="/Cart" element={<TransactionPage />} />
+        <Route
+          path="/Item/:id"
+          element={user ? <ItemDetails /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/Cart"
+          element={user ? <TransactionPage /> : <Navigate to="/auth" />}
+        />
         <Route
           path="/Menu"
           element={user ? <Home /> : <Navigate to="/auth" />}
         />
         <Route
+          path="/SalesPage"
+          element={user ? <SalesPage /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/KitchenPage"
+          element={user ? <KitchenPage /> : <Navigate to="/auth" />}
+        />
+        <Route
           path="/auth"
           element={!user ? <AuthPage /> : <Navigate to="/Menu" />}
         />
-        <Route path="/authV2" element={<LoginCard />} />
       </Routes>
     </Suspense>
   );

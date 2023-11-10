@@ -74,6 +74,30 @@ const ItemDetails = () => {
     );
   }
 
+  const handleOrderNow = async () => {
+    try {
+      const response = await fetch("/api/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          foodId: foodItem?._id,
+          quantity: quantity,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Optionally handle successful addition to the cart (e.g., show a success message)
+    } catch (error) {
+      // Handle the error (e.g., show an error message)
+      console.error("Error adding item to cart:", error);
+    }
+  };
+
   // Replace the static content with dynamic data from `foodItem`
   return (
     <>
@@ -119,7 +143,10 @@ const ItemDetails = () => {
               </div>
               <Link to="/Cart">
                 <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
-                  <button className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 flex flex-row">
+                  <button
+                    className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 flex flex-row"
+                    onClick={handleOrderNow}
+                  >
                     <div className="mr-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,14 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-interface PlusMinButtonProps {
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const Plus_Min_Button: React.FC<PlusMinButtonProps> = ({
-  quantity,
-  setQuantity,
-}) => {
+const Plus_Min_Button = () => {
+  const [quantity, setQuantity] = useState(1); // Default quantity is 1
   return (
     <>
       <div className="border border-gray-100 rounded-full flex flex-row justify-around h-9 items-center w-24 select-none">
