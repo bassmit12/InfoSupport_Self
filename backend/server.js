@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import foodRoutes from "./routes/foodRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/api/food", foodRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/order", orderRoutes);
 
 app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
