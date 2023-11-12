@@ -4,6 +4,7 @@ import Header from "../../components/ui/Header";
 
 interface Food {
   _id: string;
+  price: number;
   // ... other properties of your Food model
 }
 
@@ -16,10 +17,29 @@ interface CartItem {
 
 const TransactionPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const handleOrderNow = async () => {
+    try {
+      const response = await fetch("/api/cart/convert-to-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // Clear the local cart items on successful conversion
+        setCartItems([]);
+        console.log("Order successfully placed!");
+      } else {
+        console.error("Error placing order:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+    }
+  };
 
   const onUpdateQuantity = async (foodId: string, newQuantity: number) => {
     try {
-      // Make a PUT request to update the quantity
       const response = await fetch("/api/cart/update-quantity", {
         method: "PUT",
         headers: {
@@ -31,15 +51,15 @@ const TransactionPage = () => {
         }),
       });
 
+      console.log(foodId, newQuantity);
+
       if (response.ok) {
-        // Update the local state with the new quantity
         setCartItems((prevItems) =>
           prevItems.map((item) =>
             item.food._id === foodId ? { ...item, quantity: newQuantity } : item
           )
         );
       } else {
-        // Handle error response from the API
         console.error("Error updating quantity:", response.statusText);
       }
     } catch (error) {
@@ -119,7 +139,10 @@ const TransactionPage = () => {
         ))}
 
         <div className="flex flex-row justify-between items-center">
-          <button className="bg-primary text-white px-9 py-3 text-xl focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105">
+          <button
+            className="bg-primary text-white px-9 py-3 text-xl focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105"
+            onClick={handleOrderNow}
+          >
             Order Now
           </button>
           <h2 className="text-gray-900 poppins text-4xl font-medium">
