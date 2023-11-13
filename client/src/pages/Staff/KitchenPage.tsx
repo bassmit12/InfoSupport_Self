@@ -5,6 +5,7 @@ interface KitchenPageProps {}
 
 const KitchenPage: React.FC<KitchenPageProps> = () => {
   const [orders, setOrders] = useState<OrderType[]>([]);
+  const [tables, setTables] = useState<Record<string, number>>({});
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -69,6 +70,7 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
           <div key={order._id} className="col-span-1">
             <Tab
               order={order}
+              tableNumber={order.table} // Pass tableNumber as a prop
               onUpdate={handleOrderUpdate}
               onComplete={handleOrderComplete}
             />
