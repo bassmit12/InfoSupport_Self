@@ -33,7 +33,8 @@ const foodSchema = new mongoose.Schema(
     },
     dietaryInfo: {
       type: String,
-      enum: ["Vegetarian", "Vegan", "Gluten-free", ""],
+      enum: ["Vegetarian", "Vegan", "Gluten-free"],
+      default: "",
     },
   },
   {

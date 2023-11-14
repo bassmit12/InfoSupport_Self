@@ -24,6 +24,7 @@ const ItemDetails = () => {
   const [quantity, setQuantity] = useState(1); // Default quantity is 1
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const { id } = useParams<{ id: string }>();
+  const [showNotes, setShowNotes] = useState(false);
 
   useEffect(() => {
     const fetchFoodInfo = async () => {
@@ -131,18 +132,33 @@ const ItemDetails = () => {
                   {foodItem.ingredients.join(", ")}
                 </p>
               )}
-
-              <div className="flex items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
-                <h2 className="text-3xl font-bold text-black poppins select-none">
+              {showNotes && (
+                <textarea
+                  id="message"
+                  rows="4"
+                  className="block p-2.5 mt-6 w-full text-sm poppins text-gray-500 leading-relaxed  rounded-lg border border-gray-300 outline-none"
+                  placeholder="Add info for the kitchen"
+                ></textarea>
+              )}
+              <div className="flex ml-10 md:ml-0 lg:ml-0 items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
+                <h2 className="text-3xl font-medium text-black poppins select-none">
                   ${totalPrice?.toFixed(2)}
                 </h2>
                 <Plus_Min_Button
                   quantity={quantity}
                   setQuantity={setQuantity}
                 />
+
+                <button
+                  onClick={() => setShowNotes(!showNotes)}
+                  className="bg-primary text-white px-5 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 text-center"
+                >
+                  <h1>Add Notes</h1>
+                </button>
               </div>
+
               <Link to="/Cart">
-                <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start">
+                <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start gap-x-4">
                   <button
                     className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 flex flex-row"
                     onClick={handleOrderNow}
