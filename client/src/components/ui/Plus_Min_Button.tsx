@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Plus_Min_Button = ({ quantity, setQuantity }) => {
   return (
     <>
-      <div className="border border-gray-100 rounded-full flex flex-row justify-around h-9 items-center w-24 select-none">
+      <div className="border border-gray-100 rounded-full flex flex-row justify-around h-14 items-center w-36 select-none">
         <button
-          className="border rounded-full bg-primary text-white h-6 w-6 text-center"
+          className="border rounded-full bg-primary text-white h-9 w-9 text-center text-2xl"
           onClick={() => setQuantity(quantity - 1)}
         >
           -
         </button>
-        <h1>{quantity}</h1>
+        <h1 className="text-xl">{quantity}</h1>
         <button
-          className="border rounded-full bg-primary text-white h-6 w-6 text-center"
+          className="border rounded-full bg-primary text-white h-9 w-9 text-center text-2xl"
           onClick={() => setQuantity(quantity + 1)}
         >
           +
@@ -23,3 +23,4 @@ const Plus_Min_Button = ({ quantity, setQuantity }) => {
 };
 
 export default Plus_Min_Button;
+2;
