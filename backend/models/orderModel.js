@@ -20,6 +20,9 @@ const orderSchema = new mongoose.Schema(
           default: 1,
           min: 1,
         },
+        notes: {
+          type: String, // Change the type accordingly if notes have a specific format
+        },
       },
     ],
     status: {

@@ -25,6 +25,7 @@ const ItemDetails = () => {
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const { id } = useParams<{ id: string }>();
   const [showNotes, setShowNotes] = useState(false);
+  const [notes, setNotes] = useState<string>("");
 
   useEffect(() => {
     const fetchFoodInfo = async () => {
@@ -85,6 +86,7 @@ const ItemDetails = () => {
         body: JSON.stringify({
           foodId: foodItem?._id,
           quantity: quantity,
+          notes: notes,
         }),
       });
 
@@ -138,6 +140,8 @@ const ItemDetails = () => {
                   rows="4"
                   className="block p-2.5 mt-6 w-full text-sm poppins text-gray-500 leading-relaxed  rounded-lg border border-gray-300 outline-none"
                   placeholder="Add info for the kitchen"
+                  value={notes} // Set the value of the textarea to the 'notes' state
+                  onChange={(e) => setNotes(e.target.value)} // Update the 'notes' state on change
                 ></textarea>
               )}
               <div className="flex ml-10 md:ml-0 lg:ml-0 items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">

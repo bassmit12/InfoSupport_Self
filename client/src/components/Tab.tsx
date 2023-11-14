@@ -7,6 +7,7 @@ export interface FoodItem {
     price: number;
   };
   quantity: number;
+  notes?: string;
 }
 
 export interface Order {
@@ -15,7 +16,6 @@ export interface Order {
   items: FoodItem[];
   status: string;
   total: number;
-  notes?: string;
 }
 
 interface TabProps {
@@ -27,7 +27,7 @@ interface TabProps {
 const Tab: React.FC<TabProps> = ({ order, onUpdate, onComplete }) => {
   const handleUpdateClick = () => {
     // Implement logic for updating order details
-    onUpdate(order._id, { status: "Updated Status", notes: "Updated Notes" });
+    onUpdate(order._id, { status: "Updated Status" });
   };
 
   const handleCompleteClick = () => {
@@ -60,14 +60,17 @@ const Tab: React.FC<TabProps> = ({ order, onUpdate, onComplete }) => {
       <div className="white p-5 border-x border-slate-300">
         <ul>
           {order.items.map((item) => (
-            <li
-              key={item._id}
-              className="flex justify-between items-center mb-2"
-            >
-              <p>{`${item.quantity} x ${item.food.name}`}</p>
-              <p>{`€${(item.quantity * item.food.price).toFixed(2)}`}</p>
+            <li key={item._id} className="flex flex-col mb-2">
+              <div className="flex justify-between">
+                <p>{`${item.quantity} x ${item.food.name}`}</p>
+                <p>{`€${(item.quantity * item.food.price).toFixed(2)}`}</p>
+              </div>
+              {item.notes && (
+                <p className="text-red-500 ml-6">Notes: {item.notes}</p>
+              )}
             </li>
           ))}
+
           <li>
             <div className="flex justify-between items-center border-t-2 border-black border-dashed pt-2">
               <p>Totaal</p>

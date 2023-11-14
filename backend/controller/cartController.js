@@ -9,7 +9,7 @@ import Food from "../models/foodModel.js";
 const addToCart = async (req, res) => {
   // User's ID should be obtained from session or token
   const userId = req.user._id; // This is an example, adjust accordingly.
-  const { foodId, quantity } = req.body;
+  const { foodId, quantity, notes } = req.body; // Added 'notes' to the request body
 
   try {
     let cart = await Cart.findOne({ user: userId });
@@ -17,20 +17,21 @@ const addToCart = async (req, res) => {
       // Cart exists for user
       let itemIndex = cart.items.findIndex((p) => p.food._id == foodId);
       if (itemIndex > -1) {
-        // Update the quantity of an existing item
+        // Update the quantity and notes of an existing item
         let item = cart.items[itemIndex];
         item.quantity = quantity;
+        item.notes = notes; // Adding notes
         cart.items[itemIndex] = item;
       } else {
-        // Add new item to cart
-        cart.items.push({ food: foodId, quantity: quantity });
+        // Add new item to cart with notes
+        cart.items.push({ food: foodId, quantity: quantity, notes: notes });
       }
       cart = await cart.save();
     } else {
-      // No cart for user, create new cart
+      // No cart for user, create new cart with notes
       cart = await Cart.create({
         user: userId,
-        items: [{ food: foodId, quantity: quantity }],
+        items: [{ food: foodId, quantity: quantity, notes: notes }],
       });
     }
     res.status(201).json(cart);
@@ -75,6 +76,7 @@ const convertCartToOrder = async (req, res) => {
       items: cart.items.map((item) => ({
         food: item.food,
         quantity: item.quantity,
+        notes: item.notes,
       })),
       total: total,
       // You can add more fields to the order object if needed, such as notes or payment method
