@@ -19,6 +19,11 @@ const TransactionPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const handleOrderNow = async () => {
     try {
+      if (cartItems.length === 0) {
+        console.log("Cannot place an order with an empty cart");
+        return;
+      }
+
       const response = await fetch("/api/cart/convert-to-order", {
         method: "POST",
         headers: {
