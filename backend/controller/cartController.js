@@ -1,7 +1,7 @@
-import User from "../models/userModel.js";
-import Cart from "../models/cartModel.js";
-import Order from "../models/orderModel.js";
-import Food from "../models/foodModel.js";
+import User from "../db/models/userModel.js";
+import Cart from "../db/models/cartModel.js";
+import Order from "../db/models/orderModel.js";
+import Food from "../db/models/foodModel.js";
 
 // Rest of your code
 

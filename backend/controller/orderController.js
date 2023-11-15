@@ -1,4 +1,4 @@
-import Order from "../models/orderModel.js";
+import Order from "../db/models/orderModel.js";
 
 // To get the order feed
 const getOrderFeed = async (req, res) => {
