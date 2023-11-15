@@ -65,12 +65,11 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
 
   return (
     <div className="gray h-screen p-20">
-      <div className="grid gray gap-20 grid-cols-3">
+      <div className="grid gray gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {orders.map((order) => (
           <div key={order._id} className="col-span-1">
             <Tab
               order={order}
-              tableNumber={order.table} // Pass tableNumber as a prop
               onUpdate={handleOrderUpdate}
               onComplete={handleOrderComplete}
             />

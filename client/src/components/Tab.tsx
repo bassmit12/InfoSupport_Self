@@ -36,7 +36,7 @@ const Tab: React.FC<TabProps> = ({ order, onUpdate, onComplete }) => {
   };
 
   return (
-    <div className="p-5">
+    <>
       <div className="rounded-t-3xl p-4 border-x border-t border-slate-300 bg-red-500">
         <div className="flex text-white justify-between">
           <div className="flex items-center gap-4">
@@ -93,7 +93,7 @@ const Tab: React.FC<TabProps> = ({ order, onUpdate, onComplete }) => {
           {order.status === "Paid" ? "Completed" : "Pay"}
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

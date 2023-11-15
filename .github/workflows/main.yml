@@ -1,4 +1,4 @@
-name: Node.js CI/CD
+name: Node.js CI/CD with SonarQube
 
 on:
   push:
@@ -32,4 +32,20 @@ jobs:
         run: npm test
         working-directory: ./backend
 
-      # Deployment step will go here once you have secrets set up
+  sonarqube:
+    runs-on: ubuntu-latest
+    needs: test-backend
+    steps:
+      - name: Download SonarQube Scanner
+        run: curl -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip && unzip sonar-scanner-cli-4.6.0.2311-linux.zip
+
+      - name: Run SonarQube Scan
+        run: |
+          ./sonar-scanner-4.6.0.2311-linux/bin/sonar-scanner \
+            -Dsonar.projectKey=your_project_key \
+            -Dsonar.organization=your_organization_key \
+            -Dsonar.sources=./backend \
+            -Dsonar.host.url=https://your-sonarqube-instance.com \
+            -Dsonar.login=$SONARQUBE_TOKEN
+
+# Deployment step will go here once you have secrets set up
