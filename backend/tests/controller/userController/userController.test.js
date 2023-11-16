@@ -10,17 +10,10 @@ import * as UserRepository from "../../../db/repository/userRepository.js";
 // Import your mock data
 import { mockUserId, mockUser } from "./userControllerMocks.js";
 
-import * as generateTokenAndSetCookieModule from "../../../helpers/generateTokenAndSetCookie.js";
-
 jest.mock("../../../helpers/generateTokenAndSetCookie.js", () => {
-  return {
-    __esModule: true,
-    default: jest.fn(() => {
-      console.log("Mocked generateTokenAndSetCookie function called");
-    }),
-    generateTokenAndSetCookie:
-      generateTokenAndSetCookieModule.generateTokenAndSetCookie,
-  };
+  return jest.fn(() => {
+    console.log("Mocked generateTokenAndSetCookie function called");
+  });
 });
 
 // Mocking the UserRepository functions
