@@ -137,7 +137,7 @@ const ItemDetails = () => {
               {showNotes && (
                 <textarea
                   id="message"
-                  rows="4"
+                  rows={4}
                   className="block p-2.5 mt-6 w-full text-sm poppins text-gray-500 leading-relaxed  rounded-lg border border-gray-300 outline-none"
                   placeholder="Add info for the kitchen"
                   value={notes} // Set the value of the textarea to the 'notes' state

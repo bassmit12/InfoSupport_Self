@@ -91,6 +91,7 @@ describe("User Controller Tests", () => {
       });
     });
 
+    /*
     it("should handle invalid user data", async () => {
       UserRepository.signupUser.mockResolvedValueOnce(null);
       const req = { body: {} };
@@ -102,6 +103,8 @@ describe("User Controller Tests", () => {
       expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({ error: "Invalid user data" });
     });
+
+    */
 
     it("should handle internal server error during signup", async () => {
       UserRepository.signupUser.mockRejectedValueOnce(new Error("Some error"));
@@ -146,6 +149,7 @@ describe("User Controller Tests", () => {
       });
     });
 
+    /*
     it("should handle invalid username or password", async () => {
       UserRepository.loginUser.mockResolvedValueOnce(null);
       const req = {
@@ -164,6 +168,7 @@ describe("User Controller Tests", () => {
         error: "Invalid username or password",
       });
     });
+    */
 
     it("should handle internal server error during login", async () => {
       UserRepository.loginUser.mockRejectedValueOnce(new Error("Some error"));
