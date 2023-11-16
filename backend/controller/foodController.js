@@ -1,11 +1,11 @@
-import Food from "../db/models/foodModel.js";
+import * as FoodRepository from "../db/repository/foodRepository.js";
 
 const getFoodFeed = async (req, res) => {
   try {
-    const foodItems = await Food.find();
+    const foodItems = await FoodRepository.getFoodFeed();
     res.status(200).json(foodItems);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -31,19 +31,11 @@ const createFood = async (req, res) => {
       !imageURL
     ) {
       return res.status(400).json({
-        message:
-          "Please provide all fields (Name, DescriptionLong, DescriptionShort, Price, Category and imageURL are all required)",
+        message: "Please provide all required fields",
       });
     }
 
-    const maxLengthDescriptionLong = 1000;
-    if (descriptionLong.length > maxLengthDescriptionLong) {
-      return res.status(400).json({
-        message: `Description must be less than ${maxLengthDescriptionLong} characters`,
-      });
-    }
-
-    const newFood = new Food({
+    const newFood = await FoodRepository.createFood({
       name,
       descriptionLong,
       descriptionShort,
@@ -54,34 +46,25 @@ const createFood = async (req, res) => {
       dietaryInfo,
     });
 
-    await newFood.save();
     res
       .status(201)
       .json({ message: "Food Item created successfully", newFood });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 const getItemInfo = async (req, res) => {
   try {
     const foodId = req.params.id;
-    const foodItem = await Food.findById(foodId);
-    if (!foodItem) {
-      return res.status(404).json({ message: "Food item not found" });
-    }
+    const foodItem = await FoodRepository.getItemInfo(foodId);
     res.status(200).json(foodItem);
   } catch (error) {
-    // If the error is due to an invalid object id format
-    if (error.kind === "ObjectId") {
+    if (error.message === "Invalid food id format") {
       return res.status(400).json({ message: "Invalid food id format" });
     }
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-const getCart = async (req, res) => {};
-
-const putItemInCart = async (req, res) => {};
-
-export { getFoodFeed, createFood, getItemInfo, getCart, putItemInCart };
+export { getFoodFeed, createFood, getItemInfo };
