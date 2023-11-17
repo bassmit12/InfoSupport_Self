@@ -2,7 +2,7 @@ import React from "react";
 
 interface PlusMinButtonProps {
   quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  setQuantity: (newQuantity: number) => void;
 }
 
 const Plus_Min_Button: React.FC<PlusMinButtonProps> = ({
