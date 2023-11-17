@@ -1,5 +1,3 @@
-import React from "react";
-
 const Item_Skeleton = () => {
   return (
     <div className="animate-pulse bg-white border border-gray-100 transition transform duration-700 hover:shadow-xl hover:scale-105 p-4 rounded-lg relative">

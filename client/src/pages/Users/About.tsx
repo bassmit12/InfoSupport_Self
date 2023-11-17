@@ -1,6 +1,4 @@
-import React from "react";
 import "../../styles/frontpage.css";
-import Beef from "../../assets/About/Beef.jpg";
 import Beefplate from "../../assets/About/BeefPlate.jpg";
 import Kitchen from "../../assets/About/Kitchen.jpg";
 import Salad from "../../assets/About/Salad.jpg";

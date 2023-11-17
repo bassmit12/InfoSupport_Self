@@ -7,8 +7,6 @@ import TransactionPage from "./pages/Users/TransactionPage";
 import { useRecoilValue } from "recoil";
 import userAtom from "./atoms/userAtom.ts";
 import AuthPage from "./pages/Users/AuthPage.js";
-import LoginCard from "./components/auth/LoginCard.tsx";
-import SalesPage from "./pages/Staff/SalesPage.tsx";
 import KitchenPage from "./pages/Staff/KitchenPage.tsx";
 
 function App() {
@@ -28,10 +26,6 @@ function App() {
         <Route
           path="/Menu"
           element={user ? <Home /> : <Navigate to="/auth" />}
-        />
-        <Route
-          path="/SalesPage"
-          element={user ? <SalesPage /> : <Navigate to="/auth" />}
         />
         <Route
           path="/KitchenPage"

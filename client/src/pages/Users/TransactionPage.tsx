@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Transaction from "../../components/Transaction";
 import Header from "../../components/ui/Header";
 
-interface Food {
-  _id: string;
-  price: number;
-  // ... other properties of your Food model
-}
+import { CartItem } from "../../types/types";
 
-interface CartItem {
-  _id: string;
-  food: Food;
-  quantity: number;
-  // ... other properties if any
-}
-
-const TransactionPage = () => {
+const TransactionPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
   const handleOrderNow = async () => {
     try {
       if (cartItems.length === 0) {

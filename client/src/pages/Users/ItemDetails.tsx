@@ -4,18 +4,7 @@ import Plus_Min_Button from "../../components/ui/Plus_Min_Button";
 import Header from "../../components/ui/Header";
 import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleton";
 
-// Define the interface for the food item structure
-interface FoodItem {
-  _id: string;
-  name: string;
-  descriptionLong: string;
-  descriptionShort: string;
-  price: number;
-  category: string;
-  imageURL: string;
-  ingredients?: string[];
-  dietaryInfo?: string;
-}
+import { FoodItem } from "../../types/types";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
@@ -26,7 +15,6 @@ const ItemDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState<string>("");
-
   useEffect(() => {
     const fetchFoodInfo = async () => {
       try {

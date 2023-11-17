@@ -1,22 +1,6 @@
 import React from "react";
 
-export interface FoodItem {
-  _id: string;
-  food: {
-    name: string;
-    price: number;
-  };
-  quantity: number;
-  notes?: string;
-}
-
-export interface Order {
-  _id: string;
-  table: string;
-  items: FoodItem[];
-  status: string;
-  total: number;
-}
+import { Order } from "../types/types";
 
 interface TabProps {
   order: Order;
@@ -27,7 +11,7 @@ interface TabProps {
 const Tab: React.FC<TabProps> = ({ order, onUpdate, onComplete }) => {
   const handleUpdateClick = () => {
     // Implement logic for updating order details
-    onUpdate(order._id, { status: "Updated Status" });
+    onUpdate(order._id, { status: "Accepted" });
   };
 
   const handleCompleteClick = () => {

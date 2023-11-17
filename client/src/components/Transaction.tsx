@@ -1,10 +1,21 @@
 // Transaction.jsx
-import React from "react";
 import Plus_Min_Button from "./ui/Plus_Min_Button";
 
-const Transaction = ({ item, onUpdateQuantity, onRemoveItem }) => {
+import { OrderItem } from "../types/types";
+
+interface TransactionProps {
+  item: OrderItem; // Updated to use OrderItem type
+  onUpdateQuantity: (foodId: string, newQuantity: number) => void;
+  onRemoveItem: (foodId: string) => void;
+}
+
+const Transaction: React.FC<TransactionProps> = ({
+  item,
+  onUpdateQuantity,
+  onRemoveItem,
+}) => {
   const { food, quantity } = item;
-  const { name, price, imageURL } = food;
+  const { name, imageURL } = food;
 
   return (
     <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center">

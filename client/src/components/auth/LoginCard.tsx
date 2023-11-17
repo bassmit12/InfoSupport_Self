@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../../atoms/authAtom";
 import userAtom from "../../atoms/userAtom";
 
 export default function LoginCard() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword] = useState(false); //add SetShowPassword if you want to make the text visible
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const setUser = useSetRecoilState(userAtom);
   const [inputs, setInputs] = useState({
@@ -13,10 +12,7 @@ export default function LoginCard() {
     password: "",
   });
 
-  const [loading, setLoading] = useState(false);
-
   const handleLogin = async () => {
-    setLoading(true);
     try {
       const res = await fetch("/api/users/login", {
         method: "POST",
@@ -35,8 +31,6 @@ export default function LoginCard() {
       setUser(data);
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 

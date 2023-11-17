@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/frontpage.css";
 import { Link } from "react-router-dom";
 import About from "./About";

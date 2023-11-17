@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Tab, { Order as OrderType } from "../../components/Tab";
+import Tab from "../../components/Tab";
+import { Order as OrderType } from "../../types/types";
 
 interface KitchenPageProps {}
 
 const KitchenPage: React.FC<KitchenPageProps> = () => {
   const [orders, setOrders] = useState<OrderType[]>([]);
-  const [tables, setTables] = useState<Record<string, number>>({});
+  //const [tables, setTables] = useState<Record<string, number>>({});
 
   useEffect(() => {
     const fetchOrders = async () => {
