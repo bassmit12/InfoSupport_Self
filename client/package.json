@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "private": true,
+  "private": false,
   "homepage": "https://bassmi12.github.io/InfoSupport_Self",
   "version": "0.0.0",
   "type": "module",
