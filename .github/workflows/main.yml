@@ -1,4 +1,4 @@
-name: Node.js CI/CD
+name: Node.js CI/CD with SonarQube
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test-backend:
+  test-and-scan:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,7 +15,8 @@ jobs:
         node-version: ["18.x"] # Latest LTS version of Node.js
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -31,5 +32,11 @@ jobs:
       - name: Run Backend Tests
         run: npm test
         working-directory: ./backend
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       # Deployment step will go here once you have secrets set up
