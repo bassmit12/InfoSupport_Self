@@ -15,17 +15,19 @@ const createOrUpdateCartItem = async (userId, foodId, quantity, notes) => {
     let cart = await Cart.findOne({ user: userId });
 
     if (cart) {
-      // Check if the item already exists in the cart
-      let existingItem = cart.items.find((item) => item.food._id == foodId);
+      // Find the index of the first item with the same foodId
+      let itemIndex = cart.items.findIndex((item) => item.food._id == foodId);
 
-      if (existingItem) {
-        // If the item exists, update the quantity and notes
-        existingItem.quantity += quantity;
-        existingItem.notes = notes;
+      if (itemIndex > -1) {
+        // If an item with the same foodId exists, update the quantity
+        cart.items[itemIndex].quantity += quantity;
       } else {
-        // If the item doesn't exist, add a new item to the cart
+        // If no item with the same foodId exists, add a new item with the notes
         cart.items.push({ food: foodId, quantity: quantity, notes: notes });
       }
+
+      // Add a new item with the notes
+      cart.items.push({ food: foodId, quantity: quantity, notes: notes });
 
       cart = await cart.save();
     } else {
