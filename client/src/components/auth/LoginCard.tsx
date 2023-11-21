@@ -3,11 +3,13 @@ import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../../atoms/authAtom";
 import userAtom from "../../atoms/userAtom";
 import useCustomToast from "../../hooks/useToast";
+import LoadingSpinner from "../../hooks/useLoadingSpinner";
 
 export default function LoginCard() {
   const [showPassword] = useState(false); //add SetShowPassword if you want to make the text visible
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { showSuccessToast, showErrorToast } = useCustomToast();
+  const [loading, setLoading] = useState(false);
 
   const setUser = useSetRecoilState(userAtom);
   const [inputs, setInputs] = useState({
@@ -17,6 +19,7 @@ export default function LoginCard() {
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const res = await fetch("/api/users/login", {
         method: "POST",
         headers: {
@@ -45,6 +48,8 @@ export default function LoginCard() {
     } catch (error) {
       showErrorToast("Error while logging in");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,7 +103,11 @@ export default function LoginCard() {
                 className="w-full text-white bg-red-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 onClick={handleLogin}
               >
-                Sign in
+                {loading ? (
+                  <LoadingSpinner size={20} color="#ffffff" />
+                ) : (
+                  "Login"
+                )}
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don&apos;t have an account yet?{" "}
