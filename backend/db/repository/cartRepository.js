@@ -13,23 +13,29 @@ const getCartByUserId = async (userId) => {
 const createOrUpdateCartItem = async (userId, foodId, quantity, notes) => {
   try {
     let cart = await Cart.findOne({ user: userId });
+
     if (cart) {
-      let itemIndex = cart.items.findIndex((p) => p.food._id == foodId);
-      if (itemIndex > -1) {
-        let item = cart.items[itemIndex];
-        item.quantity = quantity;
-        item.notes = notes;
-        cart.items[itemIndex] = item;
+      // Check if the item already exists in the cart
+      let existingItem = cart.items.find((item) => item.food._id == foodId);
+
+      if (existingItem) {
+        // If the item exists, update the quantity and notes
+        existingItem.quantity += quantity;
+        existingItem.notes = notes;
       } else {
+        // If the item doesn't exist, add a new item to the cart
         cart.items.push({ food: foodId, quantity: quantity, notes: notes });
       }
+
       cart = await cart.save();
     } else {
+      // If the cart doesn't exist, create a new cart with the item
       cart = await Cart.create({
         user: userId,
         items: [{ food: foodId, quantity: quantity, notes: notes }],
       });
     }
+
     return cart;
   } catch (error) {
     throw error;

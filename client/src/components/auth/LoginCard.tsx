@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../../atoms/authAtom";
 import userAtom from "../../atoms/userAtom";
+import useCustomToast from "../../hooks/useToast";
 
 export default function LoginCard() {
   const [showPassword] = useState(false); //add SetShowPassword if you want to make the text visible
   const setAuthScreen = useSetRecoilState(authScreenAtom);
+  const { showSuccessToast, showErrorToast } = useCustomToast();
+
   const setUser = useSetRecoilState(userAtom);
   const [inputs, setInputs] = useState({
     username: "",
@@ -27,9 +30,20 @@ export default function LoginCard() {
         console.error(data.error);
         return;
       }
+
+      if (!res.ok) {
+        console.error(`Error: ${res.status} - ${res.statusText}`);
+        const data = await res.json();
+        console.error("Server response:", data);
+        return;
+      }
+
+      showSuccessToast("Logged in successfully");
       localStorage.setItem("user-threads", JSON.stringify(data));
+      console.log(localStorage.getItem("user-threads"));
       setUser(data);
     } catch (error) {
+      showErrorToast("Error while logging in");
       console.error(error);
     }
   };

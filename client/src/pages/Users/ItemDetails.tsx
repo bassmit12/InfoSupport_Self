@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Plus_Min_Button from "../../components/ui/Plus_Min_Button";
 import Header from "../../components/ui/Header";
 import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleton";
-
+import useCustomToast from "../../hooks/useToast.ts";
 import { FoodItem } from "../../types/types";
 
 const ItemDetails = () => {
@@ -15,6 +15,8 @@ const ItemDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState<string>("");
+  const { showSuccessToast, showErrorToast } = useCustomToast();
+
   useEffect(() => {
     const fetchFoodInfo = async () => {
       try {
@@ -81,9 +83,11 @@ const ItemDetails = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      showSuccessToast("Item added to the cart successfully.");
 
       // Optionally handle successful addition to the cart (e.g., show a success message)
     } catch (error) {
+      showErrorToast("Error adding item to the cart. Please try again.");
       // Handle the error (e.g., show an error message)
       console.error("Error adding item to cart:", error);
     }
@@ -149,7 +153,7 @@ const ItemDetails = () => {
                 </button>
               </div>
 
-              <Link to="/Cart">
+              <Link to="/Menu">
                 <div className="mt-8 flex items-center justify-center md:justify-start lg:justify-start gap-x-4">
                   <button
                     className="bg-primary text-white px-8 py-3 focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105 flex flex-row"

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Transaction from "../../components/Transaction";
 import Header from "../../components/ui/Header";
+import useCustomToast from "../../hooks/useToast";
 
 import { CartItem } from "../../types/types";
 
 const TransactionPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { showSuccessToast, showErrorToast } = useCustomToast();
 
   const handleOrderNow = async () => {
     try {
@@ -24,11 +26,14 @@ const TransactionPage: React.FC = () => {
       if (response.ok) {
         // Clear the local cart items on successful conversion
         setCartItems([]);
+        showSuccessToast("Order placed successfully!");
         console.log("Order successfully placed!");
       } else {
+        showErrorToast("Something went wrong while placing your order");
         console.error("Error placing order:", response.statusText);
       }
     } catch (error) {
+      showErrorToast("Something went wrong while placing your order");
       console.error("Error placing order:", error);
     }
   };
