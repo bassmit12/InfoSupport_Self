@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Tab from "../../components/Tab";
+import Tab from "../../components/kitchen/KitchenTab.tsx";
 import { Order as OrderType } from "../../types/types";
 
 interface KitchenPageProps {}
 
 const KitchenPage: React.FC<KitchenPageProps> = () => {
   const [orders, setOrders] = useState<OrderType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   //const [tables, setTables] = useState<Record<string, number>>({});
 
   useEffect(() => {
     const fetchOrders = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch("/api/order");
         const data = await response.json();
         setOrders(data);
       } catch (error) {
         console.error("Error fetching orders:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchOrders();
   }, []);
 
+  /*
   const handleOrderUpdate = async (
     orderId: string,
     updatedData: Partial<OrderType>
@@ -45,6 +51,7 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
       console.error("Error updating order:", error);
     }
   };
+  */
 
   const handleOrderComplete = async (orderId: string) => {
     try {
@@ -66,17 +73,19 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
 
   return (
     <div className="gray h-screen p-20">
-      <div className="grid gray gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {orders.map((order) => (
-          <div key={order._id} className="col-span-1">
-            <Tab
-              order={order}
-              onUpdate={handleOrderUpdate}
-              onComplete={handleOrderComplete}
-            />
-          </div>
-        ))}
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : orders.length === 0 ? (
+        <p>No pending orders at the moment.</p>
+      ) : (
+        <div className="grid gray gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {orders.map((order) => (
+            <div key={order._id} className="col-span-1">
+              <Tab order={order} onComplete={handleOrderComplete} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Header from "../../components/ui/Header";
 import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleton";
 import useCustomToast from "../../hooks/useToast.ts";
 import { FoodItem } from "../../types/types";
+import { useTranslation } from "react-i18next";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
@@ -16,6 +17,7 @@ const ItemDetails = () => {
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState<string>("");
   const { showSuccessToast, showErrorToast } = useCustomToast();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchFoodInfo = async () => {
@@ -40,7 +42,7 @@ const ItemDetails = () => {
     };
 
     fetchFoodInfo();
-  }, [id]);
+  }, [id, i18n.language]);
 
   useEffect(() => {
     if (foodItem) {
@@ -104,7 +106,7 @@ const ItemDetails = () => {
           >
             <div className="order-2 md:order-1 lg:order-1 flex flex-col justify-center">
               <h1 className="text-center md:text-left lg:text-left text-3xl lg:text-4xl font-semibold poppins pb-4 text-gray-700 select-none">
-                {foodItem.name}
+                {t(foodItem.name)}
               </h1>
               <div className="flex justify-center md:justify-normal lg:justify-normal">
                 {foodItem.dietaryInfo && ( // This line checks if dietaryInfo is not an empty string
