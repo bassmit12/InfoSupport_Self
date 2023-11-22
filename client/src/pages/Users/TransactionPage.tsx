@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import Transaction from "../../components/Transaction";
 import Header from "../../components/ui/Header";
+import useCustomToast from "../../hooks/useToast";
+import LoadingSpinner from "../../hooks/useLoadingSpinner";
 
 import { CartItem } from "../../types/types";
 
 const TransactionPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { showSuccessToast, showErrorToast } = useCustomToast();
+  const [loading, setLoading] = useState(false);
 
   const handleOrderNow = async () => {
     try {
@@ -13,7 +17,7 @@ const TransactionPage: React.FC = () => {
         console.log("Cannot place an order with an empty cart");
         return;
       }
-
+      setLoading(true);
       const response = await fetch("/api/cart/convert-to-order", {
         method: "POST",
         headers: {
@@ -24,12 +28,18 @@ const TransactionPage: React.FC = () => {
       if (response.ok) {
         // Clear the local cart items on successful conversion
         setCartItems([]);
+        showSuccessToast("Order placed successfully!");
         console.log("Order successfully placed!");
       } else {
+        showErrorToast("Something went wrong while placing your order");
         console.error("Error placing order:", response.statusText);
       }
     } catch (error) {
+      showErrorToast("Something went wrong while placing your order");
       console.error("Error placing order:", error);
+    } finally {
+      // Reset loading to false after the API call is completed
+      setLoading(false);
     }
   };
 
@@ -137,8 +147,13 @@ const TransactionPage: React.FC = () => {
           <button
             className="bg-primary text-white px-9 py-3 text-xl focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105"
             onClick={handleOrderNow}
+            disabled={loading}
           >
-            Order Now
+            {loading ? (
+              <LoadingSpinner size={20} color="#ffffff" />
+            ) : (
+              "Order Now"
+            )}
           </button>
           <h2 className="text-gray-900 poppins text-4xl font-medium">
             Total: $

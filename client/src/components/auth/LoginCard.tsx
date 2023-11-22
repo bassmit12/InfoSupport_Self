@@ -2,10 +2,15 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../../atoms/authAtom";
 import userAtom from "../../atoms/userAtom";
+import useCustomToast from "../../hooks/useToast";
+import LoadingSpinner from "../../hooks/useLoadingSpinner";
 
 export default function LoginCard() {
   const [showPassword] = useState(false); //add SetShowPassword if you want to make the text visible
   const setAuthScreen = useSetRecoilState(authScreenAtom);
+  const { showSuccessToast, showErrorToast } = useCustomToast();
+  const [loading, setLoading] = useState(false);
+
   const setUser = useSetRecoilState(userAtom);
   const [inputs, setInputs] = useState({
     username: "",
@@ -14,6 +19,7 @@ export default function LoginCard() {
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const res = await fetch("/api/users/login", {
         method: "POST",
         headers: {
@@ -27,10 +33,23 @@ export default function LoginCard() {
         console.error(data.error);
         return;
       }
+
+      if (!res.ok) {
+        console.error(`Error: ${res.status} - ${res.statusText}`);
+        const data = await res.json();
+        console.error("Server response:", data);
+        return;
+      }
+
+      showSuccessToast("Logged in successfully");
       localStorage.setItem("user-threads", JSON.stringify(data));
+      console.log(localStorage.getItem("user-threads"));
       setUser(data);
     } catch (error) {
+      showErrorToast("Error while logging in");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,7 +103,11 @@ export default function LoginCard() {
                 className="w-full text-white bg-red-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 onClick={handleLogin}
               >
-                Sign in
+                {loading ? (
+                  <LoadingSpinner size={20} color="#ffffff" />
+                ) : (
+                  "Login"
+                )}
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don&apos;t have an account yet?{" "}

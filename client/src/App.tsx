@@ -8,6 +8,8 @@ import { useRecoilValue } from "recoil";
 import userAtom from "./atoms/userAtom.ts";
 import AuthPage from "./pages/Users/AuthPage.js";
 import KitchenPage from "./pages/Staff/KitchenPage.tsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const user = useRecoilValue(userAtom);
@@ -36,6 +38,7 @@ function App() {
           element={!user ? <AuthPage /> : <Navigate to="/Menu" />}
         />
       </Routes>
+      <ToastContainer />
     </Suspense>
   );
 }
