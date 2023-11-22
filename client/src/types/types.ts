@@ -8,7 +8,7 @@ interface FoodItem {
   category: "Breakfast" | "Lunch" | "Dinner";
   imageURL: string;
   ingredients: string[];
-  dietaryInfo?: "Vegetarian" | "Vegan" | "Gluten-free"; // Optional
+  dietaryInfo: "Vegetarian" | "Vegan" | "Gluten-free"; // Optional
   createdAt: string;
   updatedAt: string;
 }

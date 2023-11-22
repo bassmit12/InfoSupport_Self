@@ -3,15 +3,7 @@ import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
 import { useTranslation } from "react-i18next";
 
-interface FoodItem {
-  _id: string;
-  name: string;
-  descriptionShort: string;
-  price: number;
-  category: string;
-  imageURL: string;
-  dietaryInfo: string;
-}
+import { FoodItem } from "../../types/types";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState<string>("Breakfast");

@@ -89,7 +89,6 @@ const ItemDetails = () => {
     }
   };
 
-  // Replace the static content with dynamic data from `foodItem`
   return (
     <>
       <Header />
