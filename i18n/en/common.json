@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "table": "Table",
+    "shoppingcart": "Shopping Cart",
+    "name": "Name",
+    "category": "Category",
+    "ingredients": "Ingredients",
+    "dietaryInfo": "Dietary Information",
+    "addNotes": "Add Notes",
+    "addKitchenInformation": "Add Information for the kitchen"
+  }
+}

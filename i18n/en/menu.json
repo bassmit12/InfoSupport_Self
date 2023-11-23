@@ -1,0 +1,16 @@
+{
+  "Grilled_Chicken_Salad": {
+    "name": "Grilled Chicken Salad",
+    "descriptionLong": "Indulge in a healthy and delicious lunch option with our grilled chicken salad. Tender slices of grilled chicken breast are carefully placed on a bed of crisp mixed greens, offering a refreshing and satisfying meal. Drizzled with a zesty vinaigrette dressing, this salad bursts with flavors and nutrients. It's a perfect choice for those looking for a light and fulfilling lunch that doesn't compromise on taste. Experience the goodness of fresh ingredients and wholesome flavors in every bite.",
+    "descriptionShort": "Grilled chicken breast slices on a bed of mixed greens with vinaigrette.",
+    "category": "Breakfast",
+    "ingredients": [
+      "Grilled Chicken Breast",
+      "Mixed Greens",
+      "Cherry Tomatoes",
+      "Cucumber",
+      "Vinaigrette Dressing"
+    ],
+    "dietaryInfo": ""
+  }
+}

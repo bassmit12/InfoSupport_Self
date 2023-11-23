@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "table": "Tafel",
+    "shoppingcart": "Winkelmandje",
+    "name": "Naam",
+    "category": "Categorie",
+    "ingredients": "Ingrediënten",
+    "dietaryInfo": "Dieetinformatie",
+    "addNotes": "Notietie toevoegen",
+    "addKitchenInformation": "Voeg informatie toe voor de keuken"
+  }
+}

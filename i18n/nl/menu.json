@@ -1,0 +1,16 @@
+{
+  "Grilled_Chicken_Salad": {
+    "name": "Gegrilde Kipsalade",
+    "descriptionLong": "Geniet van een gezonde en heerlijke lunchoptie met onze gegrilde kipsalade. Tere plakjes gegrilde kipfilet worden voorzichtig geplaatst op een bed van knapperige gemengde groenten, wat een verfrissende en bevredigende maaltijd oplevert. Overgoten met een pittige vinaigrette dressing, barst deze salade van smaken en voedingsstoffen. Het is een perfecte keuze voor degenen die op zoek zijn naar een lichte en vullende lunch die niet inlevert op smaak. Ervaar de goedheid van verse ingrediënten en gezonde smaken in elke hap.",
+    "descriptionShort": "Plakjes gegrilde kipfilet op een bed van gemengde groenten met vinaigrette.",
+    "category": "Ontbijt",
+    "ingredients": [
+      "Gegrilde Kipfilet",
+      "Gemengde Groenten",
+      "Cherrytomaten",
+      "Komkommer",
+      "Vinaigrette Dressing"
+    ],
+    "dietaryInfo": ""
+  }
+}
