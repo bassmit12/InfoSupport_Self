@@ -12,9 +12,12 @@ const Header = () => {
   const user = useRecoilValue(userAtom);
 
   const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const lang_code = e.target.value;
-    i18n.changeLanguage(lang_code);
-    console.log(user);
+    const langCode = e.target.value;
+
+    // Make sure that the language code is valid
+    if (LANGUAGES.some((language) => language.code === langCode)) {
+      i18n.changeLanguage(langCode);
+    }
   };
 
   return (
@@ -28,7 +31,7 @@ const Header = () => {
           <h1>{user?.username}</h1>
 
           <Link to="/Cart">
-            <div>{t("shoppingcart")}</div>
+            <div>{t("common:translation:shoppingcart")}</div>
           </Link>
 
           <select

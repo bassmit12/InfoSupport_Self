@@ -1,0 +1,74 @@
+{
+  "Grilled_Chicken_Salad": {
+    "name": "Gegrilde Kipsalade",
+    "descriptionLong": "Geniet van een gezonde en heerlijke lunchoptie met onze gegrilde kipsalade. Malse plakjes gegrilde kipfilet worden voorzichtig op een bed van knapperige gemengde groenten geplaatst, wat een verfrissende en bevredigende maaltijd biedt. Overgoten met een pittige vinaigrette dressing, barst deze salade van smaken en voedingsstoffen. Het is een perfecte keuze voor degenen die op zoek zijn naar een lichte en vullende lunch die niet inboet aan smaak. Ervaar de goedheid van verse ingrediënten en gezonde smaken in elke hap.",
+    "descriptionShort": "Plakjes gegrilde kipfilet op een bed van gemengde groenten met vinaigrette.",
+    "category": "Ontbijt",
+    "ingredients": "Gegrilde Kipfilet, Gemengde Groenten, Cherrytomaten, Komkommer, Vinaigrette Dressing",
+    "dietaryInfo": ""
+  },
+  "Beef_hamburger": {
+    "name": "Rundvleeshamburger",
+    "descriptionLong": "Geniet van de perfecte harmonie van smaken met onze signature burger met een verrukkelijke mix van sappige rundvleespatty, knapperig spek en een perfect gebakken ei. Elke hap is een symfonie van smaken en texturen, met ultieme voldoening voor hamburgerliefhebbers. Geserveerd in een vers, geroosterd broodje en vergezeld van je keuze aan heerlijke bijgerechten, is deze burger een culinair meesterwerk dat je smaakpapillen zal verrukken en je zult er meer van willen. Ervaar de ultieme combinatie van hartigheid en luxe in ons restaurant!",
+    "descriptionShort": "Een heerlijke hamburger met ei en spek.",
+    "category": "Diner",
+    "ingredients": "Rundvlees, Augurken, Uien, Spek, Sla, Brood",
+    "dietaryInfo": ""
+  },
+  "Classic_Pancakes": {
+    "name": "Klassieke Pannenkoeken",
+    "descriptionLong": "Begin je dag met onze klassieke pannenkoeken, perfect gemaakt met een lichte en luchtige textuur. Geserveerd met een royale scheut ahornsiroop en een kleurrijke assortiment verse bessen, zal deze ontbijttraktatie je smaakpapillen wakker maken en een zoete, bevredigende start van je ochtend bieden. Geniet van de harmonieuze mix van smaken en verwen jezelf met het comfort van dit tijdloze ontbijtfavoriet.",
+    "descriptionShort": "Luchtige pannenkoeken geserveerd met ahornsiroop en verse bessen.",
+    "category": "Ontbijt",
+    "ingredients": "Bloem, Melk, Eieren, Bakpoeder, Ahornsiroop, Verse Bessen",
+    "dietaryInfo": "Vegetarisch"
+  },
+  "Avocado_Toast_with_Eggs": {
+    "name": "Avocado-toast met eieren",
+    "descriptionLong": "Geniet van de goedheid van romige avocado in combinatie met de rijkdom van perfect gepocheerde eieren op geroosterd volkorenbrood. Deze ontbijttraktatie biedt een evenwichtige combinatie van smaken en texturen. De boterachtige gladheid van avocado, de lopende dooier van gepocheerde eieren en de knapperigheid van volkorenbrood zorgen voor een bevredigende en voedzame ontbijtervaring. Het is een favoriete keuze voor gezondheidsbewuste voedselliefhebbers die een gezonde start van hun dag zoeken.",
+    "descriptionShort": "Plakjes avocado op geroosterd volkorenbrood, getopt met perfect gepocheerde eieren.",
+    "category": "Ontbijt",
+    "ingredients": "Avocado, Volkorenbrood, Gepocheerde Eieren, Zout, Peper",
+    "dietaryInfo": "Vegetarisch"
+  },
+  "Blueberry_Pancakes": {
+    "name": "Blauwe Bessen Pannenkoeken",
+    "descriptionLong": "Trakteer jezelf op een uitbarsting van zoetheid met onze blauwe bessen pannenkoeken. Deze luchtige pannenkoeken zijn gevuld met sappige blauwe bessen, wat zorgt voor een verrukkelijke explosie van smaak in elke hap. Overgoten met warme ahornsiroop is deze ontbijttraktatie een geruststellende en bevredigende keuze voor liefhebbers van zoetigheid. Geniet van de heerlijke combinatie van luchtige pannenkoeken, verse blauwe bessen en de natuurlijke zoetheid van ahornsiroop, waardoor je ontbijt een gedenkwaardige ervaring wordt.",
+    "descriptionShort": "Luchtige pannenkoeken gevuld met zoete blauwe bessen, geserveerd met ahornsiroop.",
+    "category": "Ontbijt",
+    "ingredients": "Pannenkoekbeslag, Blauwe Bessen, Ahornsiroop, Boter",
+    "dietaryInfo": "Vegetarisch"
+  },
+  "Caprese_Salad": {
+    "name": "Caprese Salade",
+    "descriptionLong": "Ervaar de essentie van de Italiaanse keuken met onze Caprese Salade. Verse mozzarella, rijpe tomaten en basilicumblaadjes zijn nauwgezet gerangschikt om een levendige en smaakvolle salade te creëren. De combinatie van romige mozzarella, sappige tomaten en aromatische basilicum wordt versterkt door een scheutje pittige balsamico-glazuur. Deze lichte en verfrissende salade is perfect voor een bevredigende lunch en biedt een vleugje mediterrane smaken in elke hap.",
+    "descriptionShort": "Verse mozzarella, rijpe tomaten en basilicumblaadjes overgoten met balsamico-glazuur.",
+    "category": "Lunch",
+    "ingredients": "Verse Mozzarella, Tomaten, Basilicumblaadjes, Balsamico Glazuur, Zout, Peper",
+    "dietaryInfo": "Vegetarisch"
+  },
+  "Chicken_Caesar_Wrap": {
+    "name": "Kip Caesar Wrap",
+    "descriptionLong": "Geniet van een bevredigende en smaakvolle lunch met onze Kip Caesar Wrap. Malse gegrilde kipreepjes, knapperige Romeinse sla en geraspte Parmezaanse kaas worden voorzichtig verpakt in een zachte tortilla, waardoor een heerlijke handzame maaltijd ontstaat. De vulling is royaal overgoten met romige Caesar dressing, wat een rijke en hartige smaak toevoegt aan elke hap. Deze wrap is een handige en smaakvolle optie voor de lunch, perfect voor degenen die onderweg zijn of op zoek zijn naar een snelle maar heerlijke maaltijd.",
+    "descriptionShort": "Gegrilde kip, knapperige Romeinse sla en Parmezaanse kaas verpakt in een zachte tortilla.",
+    "category": "Lunch",
+    "ingredients": "Gegrilde Kip, Romeinse Sla, Parmezaanse Kaas, Caesar Dressing, Tortilla",
+    "dietaryInfo": ""
+  },
+  "Grilled_Salmon_with_Sauce": {
+    "name": "Gegrilde Zalm met Saus",
+    "descriptionLong": "Verwen je smaakpapillen met onze Gegrilde Zalm met een perfect gegaarde zalmmoot. De zalm wordt vakkundig gegrild om een ​​malse en schilferige textuur te bereiken, gecombineerd met een pittige citroen-dillesaus. Deze elegante dineroptie biedt een balans van smaken, waarbij de natuurlijke rijkdom van zalm wordt gecombineerd met de verfrissende citrusnoten van citroen en de aromatische touch van dille. Het is een verfijnde en smaakvolle keuze voor een gedenkwaardige eetervaring.",
+    "descriptionShort": "Gegrilde zalmmoot geserveerd met een pittige citroen-dillesaus.",
+    "category": "Diner",
+    "ingredients": "Zalmmoot, Citroen, Dille, Olijfolie, Zout, Peper",
+    "dietaryInfo": ""
+  },
+  "Vegetable_Stir-Fry_with_Tofu": {
+    "name": "Groente Roerbak met Tofu",
+    "descriptionLong": "Ervaar de levendige smaken van onze Groente Roerbak met Tofu. Verse en kleurrijke geassorteerde groenten, waaronder paprika, broccoli, wortelen en peultjes, worden perfect geroerbakt met blokjes tofu. De roerbak is doordrenkt met een hartige en aromatische saus, waardoor een heerlijke medley van smaken en texturen ontstaat. Geserveerd met luchtige gestoomde rijst is deze vegetarische dineroptie een voedzame en bevredigende keuze voor degenen die een gezonde en smaakvolle maaltijd zoeken.",
+    "descriptionShort": "Geassorteerde groenten en tofu geroerbakt in een hartige saus, geserveerd met gestoomde rijst.",
+    "category": "Diner",
+    "ingredients": "Tofu, Paprika, Broccoli, Wortelen, Peultjes, Sojasaus, Knoflook, Gember, Rijst",
+    "dietaryInfo": "Veganistisch"
+  }
+}

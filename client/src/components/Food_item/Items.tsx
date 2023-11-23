@@ -60,7 +60,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Breakfast")}
         >
-          {t("breakfast")}
+          {t("common:translation:breakfast")}
         </p>
         <p
           className={
@@ -70,7 +70,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Lunch")}
         >
-          {t("lunch")}
+          {t("common:translation:lunch")}
         </p>
         <p
           className={
@@ -80,7 +80,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Dinner")}
         >
-          {t("dinner")}
+          {t("common:translation:dinner")}
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
@@ -100,9 +100,7 @@ const Items = () => {
               id={item._id}
               image={item.imageURL}
               title={item.name}
-              descriptionShort={item.descriptionShort}
               price={item.price}
-              foodType={item.category}
               dietaryInfo={item.dietaryInfo}
             />
           ))

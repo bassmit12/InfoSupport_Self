@@ -3,6 +3,7 @@ import Transaction from "../../components/Transaction";
 import Header from "../../components/ui/Header";
 import useCustomToast from "../../hooks/useToast";
 import LoadingSpinner from "../../hooks/useLoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 import { CartItem } from "../../types/types";
 
@@ -10,6 +11,7 @@ const TransactionPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const { showSuccessToast, showErrorToast } = useCustomToast();
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleOrderNow = async () => {
     try {
@@ -130,7 +132,9 @@ const TransactionPage: React.FC = () => {
       <Header />
       <div className="flex justify-center items-center my-10">
         <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
-        <h1 className="text-4xl font-medium uppercase">Order</h1>
+        <h1 className="text-4xl font-medium uppercase">
+          {t("common:translation:order")}
+        </h1>
         <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
       </div>
       <section className="my-20 max-w-screen-xl mx-auto px-6">
@@ -152,7 +156,7 @@ const TransactionPage: React.FC = () => {
             {loading ? (
               <LoadingSpinner size={20} color="#ffffff" />
             ) : (
-              "Order Now"
+              t("common:translation:orderNow")
             )}
           </button>
           <h2 className="text-gray-900 poppins text-4xl font-medium">

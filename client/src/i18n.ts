@@ -30,8 +30,10 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    ns: ["common", "menu"], // Add your namespaces here
+    defaultNS: "common", // Set a default namespace
     backend: {
-      loadPath: `${getCurrentHost}/i18n/{{lng}}.json`,
+      loadPath: `${getCurrentHost}/i18n/{{lng}}/{{ns}}.json`,
     },
   });
 
