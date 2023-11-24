@@ -7,6 +7,7 @@ type Table = {
   password: string;
   capacity: number;
   isOccupied: boolean;
+  role: string;
 };
 
 // Parse the localStorage data into the Table type

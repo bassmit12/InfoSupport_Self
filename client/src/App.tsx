@@ -10,9 +10,13 @@ import AuthPage from "./pages/Users/AuthPage.js";
 import KitchenPage from "./pages/Staff/KitchenPage.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Restricted from "./pages/Restricted.tsx";
 
 function App() {
   const user = useRecoilValue(userAtom);
+  const isStaff = user && user.role === "Staff";
+  const isAdmin = user && user.role === "Admin";
+
   return (
     <Suspense fallback="loading">
       <Routes>
@@ -31,12 +35,23 @@ function App() {
         />
         <Route
           path="/KitchenPage"
-          element={user ? <KitchenPage /> : <Navigate to="/auth" />}
+          element={
+            user ? (
+              isAdmin || isStaff ? (
+                <KitchenPage />
+              ) : (
+                <Navigate to="/restricted" />
+              )
+            ) : (
+              <Navigate to="/auth" />
+            )
+          }
         />
         <Route
           path="/auth"
           element={!user ? <AuthPage /> : <Navigate to="/Menu" />}
         />
+        <Route path="restricted" element={<Restricted />} />
       </Routes>
       <ToastContainer />
     </Suspense>

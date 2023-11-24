@@ -29,6 +29,11 @@ const tableSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order", // assuming you will have an Order model to reference
     },
+    role: {
+      type: String,
+      required: true,
+      enum: ["User", "Staff", "Admin"],
+    },
     // You can add more fields as needed, such as reservation details if applicable
   },
   {

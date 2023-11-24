@@ -22,7 +22,13 @@ const getUserProfile = async (query) => {
   }
 };
 
-const signupUser = async ({ tableNumber, capacity, username, password }) => {
+const signupUser = async ({
+  tableNumber,
+  capacity,
+  username,
+  password,
+  role,
+}) => {
   try {
     const user = await User.findOne({ $or: [{ tableNumber }, { username }] });
 
@@ -38,6 +44,7 @@ const signupUser = async ({ tableNumber, capacity, username, password }) => {
       capacity,
       username,
       password: hashedPassword,
+      role, // Add the role property here
     });
 
     await newUser.save();
@@ -77,7 +84,7 @@ const logoutUser = () => {
 
 const updateUser = async (
   userId,
-  { tableNumber, username, password, capacity, isOccupied }
+  { tableNumber, username, password, capacity, isOccupied, role }
 ) => {
   try {
     let user = await User.findById(userId);
@@ -96,6 +103,7 @@ const updateUser = async (
     user.username = username || user.username;
     user.capacity = capacity || user.capacity;
     user.isOccupied = isOccupied || user.isOccupied;
+    user.role = role || user.role; // Add the role property here
 
     user = await user.save();
 
