@@ -19,7 +19,7 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
 
         // Fetch table details for each order
         const ordersWithTables = await Promise.all(
-          ordersData.map(async (order) => {
+          ordersData.map(async (order: OrderType) => {
             const tableResponse = await fetch(
               `/api/users/profile/${order.table}`
             );
