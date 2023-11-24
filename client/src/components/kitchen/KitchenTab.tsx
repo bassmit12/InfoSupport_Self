@@ -47,10 +47,6 @@ function KitchenTab({
     }
   };
 
-  if (order.items.length === 0) {
-    return <div>No pending orders</div>;
-  }
-
   return (
     <div className="select-none relative flex flex-col h-full">
       <div
@@ -59,7 +55,7 @@ function KitchenTab({
         <div className="flex text-white justify-between">
           <div className="flex items-center gap-4">
             <img src="/src/assets/Table.png" className="h-8 invert" />
-            <p>{order.table}</p>
+            <p>{order.tableNumber}</p>
           </div>
           <div className="flex items-center gap-3">
             <img src="/src/assets/Hourglass.png" className="h-8 invert" />

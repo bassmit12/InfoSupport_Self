@@ -11,6 +11,7 @@ import KitchenPage from "./pages/Staff/KitchenPage.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Restricted from "./pages/Restricted.tsx";
+import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 
 function App() {
   const user = useRecoilValue(userAtom);
@@ -46,6 +47,10 @@ function App() {
               <Navigate to="/auth" />
             )
           }
+        />
+        <Route
+          path="/Dashboard"
+          element={isAdmin ? <Dashboard /> : <Navigate to="/restricted" />}
         />
         <Route
           path="/auth"

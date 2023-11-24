@@ -40,6 +40,7 @@ interface Order {
   _id: string;
   table: string;
   items: OrderItem[];
+  tableNumber?: number;
   status: "Pending" | "Accepted" | "Cooking" | "Served" | "Paid";
   total: number;
   notes?: string;

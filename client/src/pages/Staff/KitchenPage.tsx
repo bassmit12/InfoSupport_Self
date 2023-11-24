@@ -15,8 +15,20 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
       setIsLoading(true);
       try {
         const response = await fetch("/api/order");
-        const data = await response.json();
-        setOrders(data);
+        const ordersData = await response.json();
+
+        // Fetch table details for each order
+        const ordersWithTables = await Promise.all(
+          ordersData.map(async (order) => {
+            const tableResponse = await fetch(
+              `/api/users/profile/${order.table}`
+            );
+            const tableData = await tableResponse.json();
+            return { ...order, tableNumber: tableData.tableNumber };
+          })
+        );
+
+        setOrders(ordersWithTables);
       } catch (error) {
         console.error("Error fetching orders:", error);
       } finally {
@@ -26,33 +38,6 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
 
     fetchOrders();
   }, []);
-
-  /*
-  const handleOrderUpdate = async (
-    orderId: string,
-    updatedData: Partial<OrderType>
-  ) => {
-    try {
-      const response = await fetch("/api/order/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: orderId, ...updatedData }),
-      });
-      const updatedOrder = await response.json();
-
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order._id === orderId ? updatedOrder : order
-        )
-      );
-    } catch (error) {
-      console.error("Error updating order:", error);
-    }
-  };
-  */
-
   const handleOrderComplete = async (orderId: string) => {
     try {
       await fetch("/api/order/complete", {
