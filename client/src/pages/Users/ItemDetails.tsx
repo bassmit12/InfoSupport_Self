@@ -6,6 +6,7 @@ import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleto
 import useCustomToast from "../../hooks/useToast.ts";
 import { FoodItem } from "../../types/types";
 import { useTranslation } from "react-i18next";
+import { getFoodItemInfo } from "../../utils/api.ts";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
@@ -17,32 +18,24 @@ const ItemDetails = () => {
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState<string>("");
   const { showSuccessToast, showErrorToast } = useCustomToast();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchFoodInfo = async () => {
-      try {
-        const response = await fetch(`/api/food/item/${id}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      if (id) {
+        const response = await getFoodItemInfo({ id });
+        if (response.code === "success") {
+          setFoodItem(response.data);
+          setLoading(false);
         }
-        const data: FoodItem = await response.json();
-        setFoodItem(data);
-        setLoading(false);
-      } catch (e) {
-        // Check if the error is an instance of Error and use its 'message' property
-        if (e instanceof Error) {
-          setError(e.message);
-        } else {
-          // If it's not an Error instance or doesn't have a message property, use a generic message
-          setError("An error occurred");
+        if (response.code === "error") {
+          console.log(response.error.message);
         }
-        setLoading(false);
       }
     };
 
     fetchFoodInfo();
-  }, [id, i18n.language]);
+  }, [id]);
 
   useEffect(() => {
     if (foodItem) {
