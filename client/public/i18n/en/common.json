@@ -1,17 +1,17 @@
 {
   "translation": {
-    "table": "Table",
-    "shoppingcart": "Shopping Cart",
-    "name": "Name",
-    "category": "Category",
-    "ingredients": "Ingredients",
-    "dietaryInfo": "Dietary Information",
-    "addNotes": "Add Notes",
     "addKitchenInformation": "Add Information for the kitchen",
-    "orderNow": "Order Now",
+    "addNotes": "Add Notes",
     "breakfast": "Breakfast",
-    "lunch": "Lunch",
+    "category": "Category",
+    "dietaryInfo": "Dietary Information",
     "dinner": "Dinner",
-    "order": "Order"
+    "ingredients": "Ingredients",
+    "lunch": "Lunch",
+    "name": "Name",
+    "order": "Order",
+    "orderNow": "Order Now",
+    "shoppingcart": "Shopping Cart",
+    "table": "Table"
   }
 }
