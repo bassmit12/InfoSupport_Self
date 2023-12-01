@@ -10,7 +10,7 @@ module.exports = {
       list: ["t", "i18next.t", "i18n.t", "useTranslation"],
       extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
-    lngs: ["en", "nl"], // Add more language codes if needed
+    lngs: ["en", "nl", "de"], // Add more language codes if needed
     defaultLng: "en",
     resource: {
       loadPath: "./public/i18n/{{lng}}/{{ns}}.json",

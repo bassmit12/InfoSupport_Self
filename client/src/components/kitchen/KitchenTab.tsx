@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Order } from "../../types/types";
 
-function KitchenTab({
-  order,
-  onComplete,
-}: {
-  order: Order;
-  onComplete: (orderId: string) => void;
-}) {
+interface KitchenTabProps {
+  readonly order: Order;
+  readonly onComplete: (orderId: string) => void;
+}
+
+function KitchenTab({ order, onComplete }: KitchenTabProps) {
   const [selectedItems, setSelectedItems] = useState<Array<string>>(
     new Array(order.items.length).fill("red")
   );
-
   const handleCompleteClick = () => {
     // Implement logic for completing (deleting) the order
     onComplete(order._id);

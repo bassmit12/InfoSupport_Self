@@ -18,6 +18,16 @@ function App() {
   const isStaff = user && user.role === "Staff";
   const isAdmin = user && user.role === "Admin";
 
+  const kitchenPageElement = user ? (
+    isAdmin || isStaff ? (
+      <KitchenPage />
+    ) : (
+      <Navigate to="/restricted" />
+    )
+  ) : (
+    <Navigate to="/auth" />
+  );
+
   return (
     <Suspense fallback="loading">
       <Routes>
@@ -34,20 +44,7 @@ function App() {
           path="/Menu"
           element={user ? <Home /> : <Navigate to="/auth" />}
         />
-        <Route
-          path="/KitchenPage"
-          element={
-            user ? (
-              isAdmin || isStaff ? (
-                <KitchenPage />
-              ) : (
-                <Navigate to="/restricted" />
-              )
-            ) : (
-              <Navigate to="/auth" />
-            )
-          }
-        />
+        <Route path="/KitchenPage" element={kitchenPageElement} />
         <Route
           path="/Dashboard"
           element={isAdmin ? <Dashboard /> : <Navigate to="/restricted" />}
