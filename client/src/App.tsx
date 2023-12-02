@@ -13,20 +13,24 @@ import "react-toastify/dist/ReactToastify.css";
 import Restricted from "./pages/Restricted.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 
+function getMainElement(user, isAdmin, isStaff) {
+  if (user) {
+    if (isAdmin || isStaff) {
+      return <KitchenPage />;
+    } else {
+      return <Navigate to="/restricted" />;
+    }
+  } else {
+    return <Navigate to="/auth" />;
+  }
+}
+
 function App() {
   const user = useRecoilValue(userAtom);
   const isStaff = user && user.role === "Staff";
   const isAdmin = user && user.role === "Admin";
 
-  const kitchenPageElement = user ? (
-    isAdmin || isStaff ? (
-      <KitchenPage />
-    ) : (
-      <Navigate to="/restricted" />
-    )
-  ) : (
-    <Navigate to="/auth" />
-  );
+  const mainElement = getMainElement(user, isAdmin, isStaff);
 
   return (
     <Suspense fallback="loading">
@@ -44,7 +48,7 @@ function App() {
           path="/Menu"
           element={user ? <Home /> : <Navigate to="/auth" />}
         />
-        <Route path="/KitchenPage" element={kitchenPageElement} />
+        <Route path="/KitchenPage" element={mainElement} />
         <Route
           path="/Dashboard"
           element={isAdmin ? <Dashboard /> : <Navigate to="/restricted" />}

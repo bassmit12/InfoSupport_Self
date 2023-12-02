@@ -56,23 +56,24 @@ const KitchenPage: React.FC<KitchenPageProps> = () => {
     }
   };
 
-  return (
-    <div className="gray h-screen p-20">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : orders.length === 0 ? (
-        <p>No pending orders at the moment.</p>
-      ) : (
-        <div className="grid gray gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {orders.map((order) => (
-            <div key={order._id} className="col-span-1">
-              <Tab order={order} onComplete={handleOrderComplete} />
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  let ordersContent;
+  if (isLoading) {
+    ordersContent = <p>Loading...</p>;
+  } else if (orders.length === 0) {
+    ordersContent = <p>No pending orders at the moment.</p>;
+  } else {
+    ordersContent = (
+      <div className="grid gray gap-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {orders.map((order) => (
+          <div key={order._id} className="col-span-1">
+            <Tab order={order} onComplete={handleOrderComplete} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return <div className="gray h-screen p-20">{ordersContent}</div>;
 };
 
 export default KitchenPage;

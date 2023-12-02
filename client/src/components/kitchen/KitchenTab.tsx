@@ -75,9 +75,9 @@ function KitchenTab({ order, onComplete }: KitchenTabProps) {
           </div>
           <ul>
             {order.items.map((item, index) => (
-              <li className="mb-2" key={index}>
+              <li className="mb-2" key={item._id}>
                 <div className="flex justify-between">
-                  <div
+                  <button
                     className="flex items-center cursor-pointer"
                     onClick={() => handleItemClick(index)}
                   >
@@ -92,9 +92,9 @@ function KitchenTab({ order, onComplete }: KitchenTabProps) {
                         <p className="text-red-500 ml-6">Notes: {item.notes}</p>
                       )}
                     </div>
-                  </div>
+                  </button>
 
-                  <div
+                  <button
                     className="flex items-center cursor-pointer"
                     onClick={() => handleItemClickReverse(index)}
                   >
@@ -102,7 +102,7 @@ function KitchenTab({ order, onComplete }: KitchenTabProps) {
                       src="https://static.thenounproject.com/png/3547811-200.png"
                       className="h-8"
                     />
-                  </div>
+                  </button>
                 </div>
               </li>
             ))}

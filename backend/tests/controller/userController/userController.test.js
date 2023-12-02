@@ -181,7 +181,7 @@ describe("User Controller Tests", () => {
         username: mockUser.username,
         password: mockUser.password,
       });
-      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({ error: "Some error" });
     });
   });

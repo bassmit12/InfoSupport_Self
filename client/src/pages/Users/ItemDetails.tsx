@@ -11,7 +11,6 @@ import { getFoodItemInfo } from "../../utils/api.ts";
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1); // Default quantity is 1
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const { id } = useParams<{ id: string }>();
@@ -42,15 +41,6 @@ const ItemDetails = () => {
       setTotalPrice(quantity * foodItem.price);
     }
   }, [quantity, foodItem]);
-
-  if (error) {
-    return (
-      <>
-        <Header />
-        <div>Error: {error}</div>
-      </>
-    );
-  }
 
   if (loading || !foodItem) {
     return (
