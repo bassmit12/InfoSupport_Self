@@ -15,14 +15,14 @@ const Transaction: React.FC<TransactionProps> = ({
   onRemoveItem,
 }) => {
   const { food, quantity } = item;
-  const { name, imageURL } = food;
+  const { name, imageURL, category } = food;
   const { t } = useTranslation();
 
   return (
     <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center">
       <img src={imageURL} className="col-span-1 h-auto w-full " alt={name} />
       <h1 className="col-span-1 text-3xl text-center hidden md:hidden lg:inline">
-        {t(`menu:${name.replace(/\s/g, "_")}.name`)}
+        {t(`menu:${category}.${name.replace(/\s/g, "_")}.name`)}
       </h1>
       <div className="col-span-1 flex justify-center items-center ">
         <Plus_Min_Button
