@@ -1,6 +1,6 @@
 // i18n-scanner.config.js
 module.exports = {
-  input: ["src/**/*.{js,jsx,ts,tsx}"],
+  input: ["./src/**/*.{js,jsx,ts,tsx}"],
   output: "./public/i18n/",
   options: {
     debug: true,
@@ -18,7 +18,7 @@ module.exports = {
       jsonIndent: 2,
       lineEnding: "\n",
     },
-    ns: ["common", "menu", "Breakfast", "Dinner", "Lunch"], // Add your namespaces here
+    ns: ["common", "menu"], // Add your namespaces here
     keySeparator: false,
     nsSeparator: false,
     interpolation: {
