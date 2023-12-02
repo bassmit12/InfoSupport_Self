@@ -18,7 +18,7 @@ module.exports = {
       jsonIndent: 2,
       lineEnding: "\n",
     },
-    ns: ["common", "menu"], // Add your namespaces here
+    ns: ["common", "menu", "Breakfast", "Dinner", "Lunch"], // Add your namespaces here
     keySeparator: false,
     nsSeparator: false,
     interpolation: {

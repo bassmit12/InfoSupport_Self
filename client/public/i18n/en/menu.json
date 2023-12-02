@@ -1,74 +1,71 @@
 {
+  "Breakfast": {
     "Avocado_Toast_with_Eggs": {
-        "category": "Breakfast",
-        "descriptionLong": "Savor the goodness of creamy avocado paired with the richness of perfectly poached eggs on toasted whole-grain bread. This breakfast delight offers a balanced combination of flavors and textures. The buttery smoothness of avocado, the runny yolk of poached eggs, and the crunch of whole-grain bread create a satisfying and nutritious breakfast experience. It's a favorite choice for health-conscious food enthusiasts seeking a wholesome start to their day.",
-        "descriptionShort": "Sliced avocado on toasted whole-grain bread, topped with perfectly poached eggs.",
-        "dietaryInfo": "Vegetarian",
-        "ingredients": "Avocado, Whole-Grain Bread, Poached Eggs, Salt, Pepper",
-        "name": "Avocado Toast with Eggs"
-    },
-    "Beef_hamburger": {
-        "category": "Dinner",
-        "descriptionLong": "Indulge in the perfect harmony of flavors with our signature burger featuring a mouthwatering blend of succulent beef patty, crispy bacon, and a perfectly fried egg. Each bite is a symphony of tastes and textures, delivering the ultimate satisfaction for burger enthusiasts. Served in a fresh, toasted bun and accompanied by your choice of delectable sides, this burger is a culinary masterpiece that will delight your taste buds and leave you craving for more. Experience the ultimate combination of savory and indulgence at our restaurant!",
-        "descriptionShort": "A delicious hamburger with egg and bacon .",
-        "dietaryInfo": "",
-        "ingredients": "Beef, Pickles, Onions, Bacon, Lettuce, Bread",
-        "name": "Beef hamburger"
+      "descriptionLong": "Savor the goodness of creamy avocado paired with the richness of perfectly poached eggs on toasted whole-grain bread. This breakfast delight offers a balanced combination of flavors and textures. The buttery smoothness of avocado, the runny yolk of poached eggs, and the crunch of whole-grain bread create a satisfying and nutritious breakfast experience. It's a favorite choice for health-conscious food enthusiasts seeking a wholesome start to their day.",
+      "descriptionShort": "Sliced avocado on toasted whole-grain bread, topped with perfectly poached eggs.",
+      "dietaryInfo": "Vegetarian",
+      "ingredients": "Avocado, Whole-Grain Bread, Poached Eggs, Salt, Pepper",
+      "name": "Avocado Toast with Eggs"
     },
     "Blueberry_Pancakes": {
-        "category": "Breakfast",
-        "descriptionLong": "Indulge in a burst of sweetness with our blueberry pancakes. These fluffy pancakes are filled with juicy blueberries, creating a delightful explosion of flavor in every bite. Drizzled with warm maple syrup, this breakfast treat is a comforting and satisfying choice for those with a sweet tooth. Enjoy the delightful combination of fluffy pancakes, fresh blueberries, and the natural sweetness of maple syrup, making your breakfast a memorable experience.",
-        "descriptionShort": "Fluffy pancakes filled with sweet blueberries, served with maple syrup.",
-        "dietaryInfo": "Vegetarian",
-        "ingredients": "Pancake Batter, Blueberries, Maple Syrup, Butter",
-        "name": "Blueberry Pancakes"
-    },
-    "Caprese_Salad": {
-        "category": "Lunch",
-        "descriptionLong": "Experience the essence of Italian cuisine with our Caprese Salad. Fresh mozzarella cheese, ripe tomatoes, and basil leaves are meticulously arranged to create a vibrant and flavorful salad. The combination of creamy mozzarella, juicy tomatoes, and aromatic basil is enhanced by a drizzle of tangy balsamic glaze. This light and refreshing salad are perfect for a satisfying lunch, offering a taste of Mediterranean flavors in every bite.",
-        "descriptionShort": "Fresh mozzarella, ripe tomatoes, and basil leaves drizzled with balsamic glaze.",
-        "dietaryInfo": "Vegetarian",
-        "ingredients": "Fresh Mozzarella, Tomatoes, Basil Leaves, Balsamic Glaze, Salt, Pepper",
-        "name": "Caprese Salad"
-    },
-    "Chicken_Caesar_Wrap": {
-        "category": "Lunch",
-        "descriptionLong": "Enjoy a satisfying and flavorful lunch with our Chicken Caesar Wrap. Tender grilled chicken slices, crisp romaine lettuce, and grated parmesan cheese are carefully wrapped in a soft tortilla, creating a delicious handheld meal. The filling is generously drizzled with creamy Caesar dressing, adding a rich and savory taste to every bite. This wrap is a convenient and mouthwatering option for lunch, perfect for those on the go or looking for a quick yet delightful meal.",
-        "descriptionShort": "Grilled chicken, crisp romaine lettuce, and parmesan cheese wrapped in a soft tortilla.",
-        "dietaryInfo": "",
-        "ingredients": "Grilled Chicken, Romaine Lettuce, Parmesan Cheese, Caesar Dressing, Tortilla",
-        "name": "Chicken Caesar Wrap"
+      "descriptionLong": "Indulge in a burst of sweetness with our blueberry pancakes. These fluffy pancakes are filled with juicy blueberries, creating a delightful explosion of flavor in every bite. Drizzled with warm maple syrup, this breakfast treat is a comforting and satisfying choice for those with a sweet tooth. Enjoy the delightful combination of fluffy pancakes, fresh blueberries, and the natural sweetness of maple syrup, making your breakfast a memorable experience.",
+      "descriptionShort": "Fluffy pancakes filled with sweet blueberries, served with maple syrup.",
+      "dietaryInfo": "Vegetarian",
+      "ingredients": "Pancake Batter, Blueberries, Maple Syrup, Butter",
+      "name": "Blueberry Pancakes"
     },
     "Classic_Pancakes": {
-        "category": "Breakfast",
-        "descriptionLong": "Start your day with our classic pancakes, crafted to perfection with a light and fluffy texture. Served with a generous drizzle of maple syrup and a colorful assortment of fresh berries, this breakfast delight will awaken your taste buds and provide a sweet, satisfying start to your morning. Enjoy the harmonious blend of flavors and indulge in the comfort of this timeless breakfast favorite.",
-        "descriptionShort": "Fluffy pancakes served with maple syrup and fresh berries.",
-        "dietaryInfo": "Vegetarian",
-        "ingredients": "Flour, Milk, Eggs, Baking Powder, Maple Syrup, Fresh Berries",
-        "name": "Classic Pancakes"
-    },
-    "Grilled_Chicken_Salad": {
-        "category": "Breakfast",
-        "descriptionLong": "Indulge in a healthy and delicious lunch option with our grilled chicken salad. Tender slices of grilled chicken breast are carefully placed on a bed of crisp mixed greens, offering a refreshing and satisfying meal. Drizzled with a zesty vinaigrette dressing, this salad bursts with flavors and nutrients. It's a perfect choice for those looking for a light and fulfilling lunch that doesn't compromise on taste. Experience the goodness of fresh ingredients and wholesome flavors in every bite.",
-        "descriptionShort": "Grilled chicken breast slices on a bed of mixed greens with vinaigrette.",
-        "dietaryInfo": "",
-        "ingredients": "Grilled Chicken Breast, Mixed Greens, Cherry Tomatoes, Cucumber, Vinaigrette Dressing",
-        "name": "Grilled Chicken Salad"
+      "descriptionLong": "Start your day with our classic pancakes, crafted to perfection with a light and fluffy texture. Served with a generous drizzle of maple syrup and a colorful assortment of fresh berries, this breakfast delight will awaken your taste buds and provide a sweet, satisfying start to your morning. Enjoy the harmonious blend of flavors and indulge in the comfort of this timeless breakfast favorite.",
+      "descriptionShort": "Fluffy pancakes served with maple syrup and fresh berries.",
+      "dietaryInfo": "Vegetarian",
+      "ingredients": "Flour, Milk, Eggs, Baking Powder, Maple Syrup, Fresh Berries",
+      "name": "Classic Pancakes"
+    }
+  },
+  "Dinner": {
+    "Beef_hamburger": {
+      "descriptionLong": "Indulge in the perfect harmony of flavors with our signature burger featuring a mouthwatering blend of succulent beef patty, crispy bacon, and a perfectly fried egg. Each bite is a symphony of tastes and textures, delivering the ultimate satisfaction for burger enthusiasts. Served in a fresh, toasted bun and accompanied by your choice of delectable sides, this burger is a culinary masterpiece that will delight your taste buds and leave you craving for more. Experience the ultimate combination of savory and indulgence at our restaurant!",
+      "descriptionShort": "A delicious hamburger with egg and bacon .",
+      "dietaryInfo": "",
+      "ingredients": "Beef, Pickles, Onions, Bacon, Lettuce, Bread",
+      "name": "Beef hamburger"
     },
     "Grilled_Salmon_with_Sauce": {
-        "category": "Dinner",
-        "descriptionLong": "Delight your taste buds with our Grilled Salmon featuring a perfectly cooked salmon fillet. The salmon is expertly grilled to achieve a tender and flaky texture, complemented by a zesty lemon-dill sauce. This elegant dinner option offers a balance of flavors, combining the natural richness of salmon with the refreshing citrusy notes of lemon and the aromatic touch of dill. It's a sophisticated and flavorful choice for a memorable dining experience.",
-        "descriptionShort": "Grilled salmon fillet served with a zesty lemon-dill sauce.",
-        "dietaryInfo": "",
-        "ingredients": "Salmon Fillet, Lemon, Dill, Olive Oil, Salt, Pepper",
-        "name": "Grilled Salmon with Sauce"
+      "descriptionLong": "Delight your taste buds with our Grilled Salmon featuring a perfectly cooked salmon fillet. The salmon is expertly grilled to achieve a tender and flaky texture, complemented by a zesty lemon-dill sauce. This elegant dinner option offers a balance of flavors, combining the natural richness of salmon with the refreshing citrusy notes of lemon and the aromatic touch of dill. It's a sophisticated and flavorful choice for a memorable dining experience.",
+      "descriptionShort": "Grilled salmon fillet served with a zesty lemon-dill sauce.",
+      "dietaryInfo": "",
+      "ingredients": "Salmon Fillet, Lemon, Dill, Olive Oil, Salt, Pepper",
+      "name": "Grilled Salmon with Sauce"
     },
     "Vegetable_Stir-Fry_with_Tofu": {
-        "category": "Dinner",
-        "descriptionLong": "Experience the vibrant flavors of our Vegetable Stir-Fry with Tofu. Fresh and colorful assorted vegetables, including bell peppers, broccoli, carrots, and snap peas, are stir-fried to perfection with tofu cubes. The stir-fry is infused with a savory and aromatic sauce, creating a delightful medley of tastes and textures. Served with fluffy steamed rice, this vegetarian dinner option is a wholesome and satisfying choice for those seeking a nutritious and flavorful meal.",
-        "descriptionShort": "Assorted vegetables and tofu stir-fried in a savory sauce, served with steamed rice.",
-        "dietaryInfo": "Vegan",
-        "ingredients": "Tofu, Bell Peppers, Broccoli, Carrots, Snap Peas, Soy Sauce, Garlic, Ginger, Rice",
-        "name": "Vegetable Stir-Fry with Tofu"
+      "descriptionLong": "Experience the vibrant flavors of our Vegetable Stir-Fry with Tofu. Fresh and colorful assorted vegetables, including bell peppers, broccoli, carrots, and snap peas, are stir-fried to perfection with tofu cubes. The stir-fry is infused with a savory and aromatic sauce, creating a delightful medley of tastes and textures. Served with fluffy steamed rice, this vegetarian dinner option is a wholesome and satisfying choice for those seeking a nutritious and flavorful meal.",
+      "descriptionShort": "Assorted vegetables and tofu stir-fried in a savory sauce, served with steamed rice.",
+      "dietaryInfo": "Vegan",
+      "ingredients": "Tofu, Bell Peppers, Broccoli, Carrots, Snap Peas, Soy Sauce, Garlic, Ginger, Rice",
+      "name": "Vegetable Stir-Fry with Tofu"
     }
+  },
+  "Lunch": {
+    "Caprese_Salad": {
+      "descriptionLong": "Experience the essence of Italian cuisine with our Caprese Salad. Fresh mozzarella cheese, ripe tomatoes, and basil leaves are meticulously arranged to create a vibrant and flavorful salad. The combination of creamy mozzarella, juicy tomatoes, and aromatic basil is enhanced by a drizzle of tangy balsamic glaze. This light and refreshing salad are perfect for a satisfying lunch, offering a taste of Mediterranean flavors in every bite.",
+      "descriptionShort": "Fresh mozzarella, ripe tomatoes, and basil leaves drizzled with balsamic glaze.",
+      "dietaryInfo": "Vegetarian",
+      "ingredients": "Fresh Mozzarella, Tomatoes, Basil Leaves, Balsamic Glaze, Salt, Pepper",
+      "name": "Caprese Salad"
+    },
+    "Chicken_Caesar_Wrap": {
+      "descriptionLong": "Enjoy a satisfying and flavorful lunch with our Chicken Caesar Wrap. Tender grilled chicken slices, crisp romaine lettuce, and grated parmesan cheese are carefully wrapped in a soft tortilla, creating a delicious handheld meal. The filling is generously drizzled with creamy Caesar dressing, adding a rich and savory taste to every bite. This wrap is a convenient and mouthwatering option for lunch, perfect for those on the go or looking for a quick yet delightful meal.",
+      "descriptionShort": "Grilled chicken, crisp romaine lettuce, and parmesan cheese wrapped in a soft tortilla.",
+      "dietaryInfo": "",
+      "ingredients": "Grilled Chicken, Romaine Lettuce, Parmesan Cheese, Caesar Dressing, Tortilla",
+      "name": "Chicken Caesar Wrap"
+    },
+    "Grilled_Chicken_Salad": {
+      "descriptionLong": "Indulge in a healthy and delicious lunch option with our grilled chicken salad. Tender slices of grilled chicken breast are carefully placed on a bed of crisp mixed greens, offering a refreshing and satisfying meal. Drizzled with a zesty vinaigrette dressing, this salad bursts with flavors and nutrients. It's a perfect choice for those looking for a light and fulfilling lunch that doesn't compromise on taste. Experience the goodness of fresh ingredients and wholesome flavors in every bite.",
+      "descriptionShort": "Grilled chicken breast slices on a bed of mixed greens with vinaigrette.",
+      "dietaryInfo": "",
+      "ingredients": "Grilled Chicken Breast, Mixed Greens, Cherry Tomatoes, Cucumber, Vinaigrette Dressing",
+      "name": "Grilled Chicken Salad"
+    }
+  }
 }

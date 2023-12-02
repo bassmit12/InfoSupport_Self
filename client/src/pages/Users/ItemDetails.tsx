@@ -89,25 +89,45 @@ const ItemDetails = () => {
           >
             <div className="order-2 md:order-1 lg:order-1 flex flex-col justify-center">
               <h1 className="text-center md:text-left lg:text-left text-3xl lg:text-4xl font-semibold poppins pb-4 text-gray-700 select-none">
-                {t(`menu:${foodItem.name.replace(/\s/g, "_")}.name`)}
+                {t(
+                  `menu:${foodItem.category}.${foodItem.name.replace(
+                    /\s/g,
+                    "_"
+                  )}.name`
+                )}
               </h1>
               <div className="flex justify-center md:justify-normal lg:justify-normal">
                 {foodItem.dietaryInfo && ( // This line checks if dietaryInfo is not an empty string
                   <span className="bg-green-100 border border-[#18BD63] rounded-full text-[#18BD63] text-sm poppins px-4 py-1 inline-block mb-4 text-center md:text-left lg:text-left">
-                    {t(`menu:${foodItem.name.replace(/\s/g, "_")}.dietaryInfo`)}
+                    {t(
+                      `menu:${foodItem.category}.${foodItem.name.replace(
+                        /\s/g,
+                        "_"
+                      )}.dietaryInfo`
+                    )}
                   </span>
                 )}
               </div>
 
               <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none">
-                {t(`menu:${foodItem.name.replace(/\s/g, "_")}.descriptionLong`)}
+                {t(
+                  `menu:${foodItem.category}.${foodItem.name.replace(
+                    /\s/g,
+                    "_"
+                  )}.descriptionLong`
+                )}
               </p>
               {foodItem.ingredients && foodItem.ingredients.length > 0 && (
                 <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none mt-5">
                   <strong className="leading-relaxed select-none">
                     {t("common:translation:ingredients")}:{" "}
                   </strong>
-                  {t(`menu:${foodItem.name.replace(/\s/g, "_")}.ingredients`)}
+                  {t(
+                    `menu:${foodItem.category}.${foodItem.name.replace(
+                      /\s/g,
+                      "_"
+                    )}.ingredients`
+                  )}
                 </p>
               )}
               {showNotes && (

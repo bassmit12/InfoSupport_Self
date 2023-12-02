@@ -1,17 +1,17 @@
 {
-    "translation": {
-        "addKitchenInformation": "Voeg informatie toe voor de keuken",
-        "addNotes": "Notietie toevoegen",
-        "breakfast": "Ontbijt",
-        "category": "Categorie",
-        "dietaryInfo": "Dieetinformatie",
-        "dinner": "Diner",
-        "ingredients": "Ingrediënten",
-        "lunch": "Lunch",
-        "name": "Naam",
-        "order": "Bestelling",
-        "orderNow": "Bestel nu",
-        "shoppingcart": "Winkelmandje",
-        "table": "Tafel"
-    }
+  "translation": {
+    "Breakfast": "Ontbijt",
+    "Dinner": "Diner",
+    "Lunch": "Lunch",
+    "addKitchenInformation": "Voeg informatie toe voor de keuken",
+    "addNotes": "Notietie toevoegen",
+    "category": "Categorie",
+    "dietaryInfo": "Dieetinformatie",
+    "ingredients": "Ingrediënten",
+    "name": "Naam",
+    "order": "Bestelling",
+    "orderNow": "Bestel nu",
+    "shoppingcart": "Winkelmandje",
+    "table": "Tafel"
+  }
 }

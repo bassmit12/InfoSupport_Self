@@ -1,17 +1,17 @@
 {
-    "translation": {
-        "addKitchenInformation": "Add Information for the kitchen",
-        "addNotes": "Add Notes",
-        "breakfast": "Breakfast",
-        "category": "Category",
-        "dietaryInfo": "Dietary Information",
-        "dinner": "Dinner",
-        "ingredients": "Ingredients",
-        "lunch": "Lunch",
-        "name": "Name",
-        "order": "Order",
-        "orderNow": "Order Now",
-        "shoppingcart": "Shopping Cart",
-        "table": "Table"
-    }
+  "translation": {
+    "Breakfast": "Breakfast",
+    "Dinner": "Dinner",
+    "Lunch": "Lunch",
+    "addKitchenInformation": "Add Information for the kitchen",
+    "addNotes": "Add Notes",
+    "category": "Category",
+    "dietaryInfo": "Dietary Information",
+    "ingredients": "Ingredients",
+    "name": "Name",
+    "order": "Order",
+    "orderNow": "Order Now",
+    "shoppingcart": "Shopping Cart",
+    "table": "Table"
+  }
 }

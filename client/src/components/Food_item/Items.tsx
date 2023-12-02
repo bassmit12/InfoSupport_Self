@@ -22,6 +22,7 @@ const Items = () => {
         } else {
           throw new Error(data.error || "Error fetching food items");
         }
+        console.log(setFoodItems);
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error fetching food items:", error.message);
@@ -60,7 +61,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Breakfast")}
         >
-          {t("common:translation:breakfast")}
+          {t("common:translation:Breakfast")}
         </p>
         <p
           className={
@@ -70,7 +71,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Lunch")}
         >
-          {t("common:translation:lunch")}
+          {t("common:translation:Lunch")}
         </p>
         <p
           className={
@@ -80,7 +81,7 @@ const Items = () => {
           }
           onClick={() => handleMenuTabs("Dinner")}
         >
-          {t("common:translation:dinner")}
+          {t("common:translation:Dinner")}
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
@@ -102,6 +103,7 @@ const Items = () => {
               title={item.name}
               price={item.price}
               dietaryInfo={item.dietaryInfo}
+              category={item.category}
             />
           ))
         )}
