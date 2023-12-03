@@ -6,6 +6,7 @@ module.exports = {
     debug: true,
     removeUnusedKeys: false,
     sort: true,
+    write: true,
     func: {
       list: ["t", "i18next.t", "i18n.t", "useTranslation"],
       extensions: [".js", ".jsx", ".ts", ".tsx"],
