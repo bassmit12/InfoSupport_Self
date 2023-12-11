@@ -3,8 +3,8 @@ describe("Login Functionality", () => {
     cy.visit("http://localhost:3000/auth");
 
     // Fill in the login form
-    cy.get('input[placeholder="Username"]').type("admin");
-    cy.get('input[placeholder="••••••••"]').type("admin");
+    cy.get('input[placeholder="Username"]').type("Admin");
+    cy.get('input[placeholder="••••••••"]').type("Admin");
 
     // Click the login button
     cy.get('button[type="button"]').click();
