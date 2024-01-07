@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IonIcon } from "@ionic/react";
+import { cartOutline, cart } from "ionicons/icons";
 import Logo from "../../assets/Menu_Masters_Logo.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -7,6 +8,7 @@ import { LANGUAGES } from "../../utils/constants/Languages";
 import LogoutButton from "../auth/LogoutButton";
 import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
+import "./Header.css"; // Import your CSS file for styling
 
 const Header = () => {
   const { i18n, t } = useTranslation();
@@ -52,9 +54,9 @@ const Header = () => {
         <div className="flex flex-row gap-x-5 px-6 relative">
           <h1>{user?.username}</h1>
 
-          <Link to="/Cart" className="relative">
-            <div className="flex items-center">
-              <AiOutlineShoppingCart size={20} />
+          <Link to="/Cart" className="relative cart-link">
+            <div className="flex items-center mt-0.5">
+              <IonIcon icon={cartOutline} size="small" />
               {cartItemCount > 0 && (
                 <div className="bg-red-500 rounded-full w-5 h-5 text-white flex items-center justify-center absolute -top-4 -right-4">
                   {cartItemCount}

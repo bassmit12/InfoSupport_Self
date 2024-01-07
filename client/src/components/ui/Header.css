@@ -1,0 +1,4 @@
+/* Header.css */
+.cart-link:hover .ion-icon {
+  color: red;
+}
