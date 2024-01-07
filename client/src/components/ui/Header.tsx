@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Logo from "../../assets/Menu_Masters_Logo.png";
 import { Link } from "react-router-dom";
