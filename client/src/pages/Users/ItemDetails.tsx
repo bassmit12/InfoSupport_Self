@@ -7,6 +7,8 @@ import useCustomToast from "../../hooks/useToast.ts";
 import { FoodItem } from "../../types/types";
 import { useTranslation } from "react-i18next";
 import { getFoodItemInfo } from "../../utils/api.ts";
+import { useRecoilValue } from "recoil";
+import userAtom from "../../atoms/userAtom";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
@@ -18,6 +20,7 @@ const ItemDetails = () => {
   const [notes, setNotes] = useState<string>("");
   const { showSuccessToast, showErrorToast } = useCustomToast();
   const { t } = useTranslation();
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     const fetchFoodInfo = async () => {
@@ -128,6 +131,14 @@ const ItemDetails = () => {
                       "_"
                     )}.ingredients`
                   )}
+                </p>
+              )}
+              {(user?.role === "Staff" || user?.role === "Admin") && (
+                <p className="text-center md:text-left lg:text-left text-sm poppins text-gray-500 leading-relaxed select-none mt-5">
+                  <strong className="leading-relaxed select-none mr-1">
+                    Stock:
+                  </strong>
+                  {foodItem.stock}
                 </p>
               )}
               {showNotes && (

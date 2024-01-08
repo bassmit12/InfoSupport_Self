@@ -20,6 +20,7 @@ const createFood = async (req, res) => {
       imageURL,
       ingredients,
       dietaryInfo,
+      stock,
     } = req.body;
 
     if (
@@ -44,6 +45,7 @@ const createFood = async (req, res) => {
       imageURL,
       ingredients,
       dietaryInfo,
+      stock,
     });
 
     res
@@ -67,4 +69,22 @@ const getItemInfo = async (req, res) => {
   }
 };
 
-export { getFoodFeed, createFood, getItemInfo };
+const updateFood = async (req, res) => {
+  try {
+    const foodId = req.params.id;
+    const updatedFields = req.body;
+
+    const updatedFood = await FoodRepository.updateFood(foodId, updatedFields);
+
+    res
+      .status(200)
+      .json({ message: "Food item updated successfully", updatedFood });
+  } catch (error) {
+    if (error.message === "Invalid food id format") {
+      return res.status(400).json({ message: "Invalid food id format" });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getFoodFeed, createFood, getItemInfo, updateFood };

@@ -36,6 +36,11 @@ const foodSchema = new mongoose.Schema(
       enum: ["Vegetarian", "Vegan", "Gluten-free", ""],
       default: "",
     },
+    stock: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   {
     timestamps: true,

@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
 
 const Header = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const user = useRecoilValue(userAtom);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [isCartHovered, setIsCartHovered] = useState(false);
@@ -66,7 +66,9 @@ const Header = () => {
         </Link>
 
         <div className="flex flex-row gap-x-5 px-6 relative cursor-pointer">
-          <h1>{user?.username}</h1>
+          <h1>
+            {user?.username} | {user?.role}
+          </h1>
 
           <Link
             to="/Cart"

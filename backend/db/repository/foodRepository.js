@@ -18,6 +18,7 @@ const createFood = async ({
   imageURL,
   ingredients,
   dietaryInfo,
+  stock,
 }) => {
   try {
     const maxLengthDescriptionLong = 1000;
@@ -36,6 +37,7 @@ const createFood = async ({
       imageURL,
       ingredients,
       dietaryInfo,
+      stock,
     });
 
     await newFood.save();
@@ -60,4 +62,21 @@ const getItemInfo = async (foodId) => {
   }
 };
 
-export { getFoodFeed, createFood, getItemInfo };
+const updateFood = async (foodId, updatedFields) => {
+  try {
+    const food = await Food.findByIdAndUpdate(foodId, updatedFields, {
+      new: true,
+    });
+    if (!food) {
+      throw new Error("Food item not found");
+    }
+    return food;
+  } catch (error) {
+    if (error.kind === "ObjectId") {
+      throw new Error("Invalid food id format");
+    }
+    throw error;
+  }
+};
+
+export { getFoodFeed, createFood, getItemInfo, updateFood };

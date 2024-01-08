@@ -11,6 +11,7 @@ interface FoodItem {
   dietaryInfo: "Vegetarian" | "Vegan" | "Gluten-free"; // Optional
   createdAt: string;
   updatedAt: string;
+  stock: number;
 }
 
 interface CartItem {
