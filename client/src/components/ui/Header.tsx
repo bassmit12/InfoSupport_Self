@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { IonIcon } from "@ionic/react";
 import { cartOutline, cart } from "ionicons/icons";
 import Logo from "../../assets/Menu_Masters_Logo.png";
@@ -8,12 +8,12 @@ import { LANGUAGES } from "../../utils/constants/Languages";
 import LogoutButton from "../auth/LogoutButton";
 import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
-import "./Header.css"; // Import your CSS file for styling
 
 const Header = () => {
   const { i18n, t } = useTranslation();
   const user = useRecoilValue(userAtom);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [isCartHovered, setIsCartHovered] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(false);
 
   useEffect(() => {
@@ -44,19 +44,42 @@ const Header = () => {
     fetchCartData();
   }, [updateTrigger]); // Empty dependency array ensures the effect runs once after the initial render
 
+  const getCartIcon = () => {
+    if (isCartHovered) {
+      return {
+        icon: cart,
+        fill: "red",
+      };
+    } else {
+      return {
+        icon: cartOutline,
+        fill: "",
+      };
+    }
+  };
+
   return (
     <nav className="max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center">
         <Link to="/Menu">
-          <img src={Logo} className="w-56 h-auto" alt="Logo" />
+          <img src={Logo} className="w-56 h-auto cursor-pointer" alt="Logo" />
         </Link>
 
-        <div className="flex flex-row gap-x-5 px-6 relative">
+        <div className="flex flex-row gap-x-5 px-6 relative cursor-pointer">
           <h1>{user?.username}</h1>
 
-          <Link to="/Cart" className="relative cart-link">
+          <Link
+            to="/Cart"
+            className="relative cart-link"
+            onMouseEnter={() => setIsCartHovered(true)}
+            onMouseLeave={() => setIsCartHovered(false)}
+          >
             <div className="flex items-center mt-0.5">
-              <IonIcon icon={cartOutline} size="small" />
+              <IonIcon
+                icon={getCartIcon().icon}
+                size="small"
+                style={{ fill: getCartIcon().fill }}
+              />
               {cartItemCount > 0 && (
                 <div className="bg-red-500 rounded-full w-5 h-5 text-white flex items-center justify-center absolute -top-4 -right-4">
                   {cartItemCount}
@@ -73,7 +96,7 @@ const Header = () => {
                 i18n.changeLanguage(langCode);
               }
             }}
-            className="bg-white"
+            className="bg-white cursor-pointer"
           >
             {LANGUAGES.map(({ code, label }) => (
               <option key={code} value={code}>
