@@ -66,9 +66,7 @@ const Header = () => {
         </Link>
 
         <div className="flex flex-row gap-x-5 px-6 relative cursor-pointer">
-          <h1>
-            {user?.username} | {user?.role}
-          </h1>
+          <h1>{user?.username}</h1>
 
           <Link
             to="/Cart"
