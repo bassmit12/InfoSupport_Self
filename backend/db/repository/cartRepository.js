@@ -1,5 +1,6 @@
 import Cart from "../models/cartModel.js";
 import Order from "../models/orderModel.js";
+import Food from "../models/foodModel.js";
 
 const getCartByUserId = async (userId) => {
   try {
@@ -54,8 +55,27 @@ const convertCartToOrder = async (userId) => {
       throw new Error("Cart not found");
     }
 
+    // Iterate through each item in the cart and update the stock
+    for (const item of cart.items) {
+      const foodId = item.food._id;
+      const quantity = item.quantity;
+
+      // Retrieve the food item from the database
+      const foodItem = await Food.findById(foodId);
+
+      // Update the stock for the food item
+      if (foodItem) {
+        foodItem.stock -= quantity;
+        await foodItem.save();
+      } else {
+        throw new Error(`Food item with ID ${foodId} not found`);
+      }
+    }
+
+    // Calculate the total price
     const total = calculateTotal(cart.items);
 
+    // Create a new order
     const order = new Order({
       table: cart.user,
       items: cart.items.map((item) => ({
@@ -66,8 +86,13 @@ const convertCartToOrder = async (userId) => {
       total: total,
     });
 
+    // Save the order to the database
     await order.save();
+
+    // Clear the items in the cart
     cart.items = [];
+
+    // Save the updated cart
     await cart.save();
 
     return order;
