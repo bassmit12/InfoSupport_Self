@@ -9,15 +9,16 @@ import { useTranslation } from "react-i18next";
 import { getFoodItemInfo } from "../../utils/api.ts";
 import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
+import io from "socket.io-client";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1); // Default quantity is 1
+  const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
-  const { id } = useParams<{ id: string }>();
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState<string>("");
+  const { id } = useParams<{ id: string }>();
   const { showSuccessToast, showErrorToast } = useCustomToast();
   const { t } = useTranslation();
   const user = useRecoilValue(userAtom);
@@ -45,14 +46,21 @@ const ItemDetails = () => {
     }
   }, [quantity, foodItem]);
 
-  if (loading || !foodItem) {
-    return (
-      <>
-        <Header />
-        <ItemDetails_Skeleton />
-      </>
-    );
-  }
+  useEffect(() => {
+    // Create a WebSocket connection
+    const socket = io("http://localhost:5000");
+
+    // Listen for stockUpdate events
+    socket.on("stockUpdate", (data) => {
+      console.log("Stock updated:", data);
+      // Handle the stock update on the client side
+    });
+
+    // Clean up the socket connection when the component unmounts
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const handleOrderNow = async () => {
     try {
@@ -81,6 +89,15 @@ const ItemDetails = () => {
     }
   };
 
+  if (loading || !foodItem) {
+    return (
+      <>
+        <Header />
+        <ItemDetails_Skeleton />
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
@@ -100,7 +117,7 @@ const ItemDetails = () => {
                 )}
               </h1>
               <div className="flex justify-center md:justify-normal lg:justify-normal">
-                {foodItem.dietaryInfo && ( // This line checks if dietaryInfo is not an empty string
+                {foodItem.dietaryInfo && (
                   <span className="bg-green-100 border border-[#18BD63] rounded-full text-[#18BD63] text-sm poppins px-4 py-1 inline-block mb-4 text-center md:text-left lg:text-left">
                     {t(
                       `menu:${foodItem.category}.${foodItem.name.replace(
@@ -147,8 +164,8 @@ const ItemDetails = () => {
                   rows={4}
                   className="block p-2.5 mt-6 w-full text-sm poppins text-gray-500 leading-relaxed  rounded-lg border border-gray-300 outline-none"
                   placeholder={t("common:translation:addKitchenInformation")}
-                  value={notes} // Set the value of the textarea to the 'notes' state
-                  onChange={(e) => setNotes(e.target.value)} // Update the 'notes' state on change
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                 ></textarea>
               )}
               <div className="flex ml-10 md:ml-0 lg:ml-0 items-center justify-center md:justify-start lg:justify-start space-x-6 pt-8">
