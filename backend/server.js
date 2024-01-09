@@ -17,6 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use("/api/food", foodRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/order", orderRoutes);
+
 app.get("/", (req, res) => {
   res.send("Infosupport backend server");
 });

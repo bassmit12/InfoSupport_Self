@@ -1,7 +1,6 @@
 // cartController.test.js
 import {
   mockUserId,
-  mockCart,
   mockFoodId,
   mockQuantity,
   mockNotes,
