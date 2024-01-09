@@ -137,7 +137,8 @@ const TransactionPage: React.FC = () => {
         </h1>
         <hr className="w-28 h-1 bg-primary border-0 rounded mx-4"></hr>
       </div>
-      <section className="my-20 max-w-screen-xl mx-auto px-6">
+      <section className="my-20 max-w-screen-lg mx-auto px-6">
+        {/* Updated component import */}
         {cartItems.map((item) => (
           <Transaction
             key={item.food._id}
@@ -147,7 +148,16 @@ const TransactionPage: React.FC = () => {
           />
         ))}
 
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col  my-8">
+          <h2 className="text-gray-900 poppins text-4xl font-medium mb-4 mx-auto">
+            Total: $
+            {cartItems
+              .reduce(
+                (total, item) => total + item.food.price * item.quantity,
+                0
+              )
+              .toFixed(2)}
+          </h2>
           <button
             className="bg-primary text-white px-9 py-3 text-xl focus:outline-none poppins rounded-full transform transition duration-300 hover:scale-105"
             onClick={handleOrderNow}
@@ -159,15 +169,6 @@ const TransactionPage: React.FC = () => {
               t("common:translation:orderNow")
             )}
           </button>
-          <h2 className="text-gray-900 poppins text-4xl font-medium">
-            Total: $
-            {cartItems
-              .reduce(
-                (total, item) => total + item.food.price * item.quantity,
-                0
-              )
-              .toFixed(2)}
-          </h2>
         </div>
       </section>
     </>

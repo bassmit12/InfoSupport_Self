@@ -1,15 +1,16 @@
-// Transaction.jsx
+// NewTransaction.jsx
+import React from "react";
 import Plus_Min_Button from "./ui/Plus_Min_Button";
 import { useTranslation } from "react-i18next";
 import { OrderItem } from "../types/types";
 
-interface TransactionProps {
-  item: OrderItem; // Updated to use OrderItem type
+interface NewTransactionProps {
+  item: OrderItem;
   onUpdateQuantity: (foodId: string, newQuantity: number) => void;
   onRemoveItem: (foodId: string) => void;
 }
 
-const Transaction: React.FC<TransactionProps> = ({
+const NewTransaction: React.FC<NewTransactionProps> = ({
   item,
   onUpdateQuantity,
   onRemoveItem,
@@ -19,32 +20,32 @@ const Transaction: React.FC<TransactionProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center">
-      <img src={imageURL} className="col-span-1 h-auto w-full " alt={name} />
-      <h1 className="col-span-1 text-3xl text-center hidden md:hidden lg:inline">
-        {t(`menu:${category}.${name.replace(/\s/g, "_")}.name`)}
-      </h1>
-      <div className="col-span-1 flex justify-center items-center ">
-        <Plus_Min_Button
-          quantity={quantity}
-          setQuantity={(newQuantity) => onUpdateQuantity(food._id, newQuantity)}
-        />
+    <div className="flex items-center border-b border-red-500 p-4">
+      <img src={imageURL} className="h-24 w-24 rounded" alt={name} />
+      <div className="flex-grow ml-4">
+        <h1 className="text-lg font-bold mb-2">
+          {t(`menu:${category}.${name.replace(/\s/g, "_")}.name`)}
+        </h1>
+        <div className="flex items-center">
+          <Plus_Min_Button
+            quantity={quantity}
+            setQuantity={(newQuantity) =>
+              onUpdateQuantity(food._id, newQuantity)
+            }
+          />
+        </div>
       </div>
-
-      <h2 className="col-span-1 text-gray-900 poppins text-3xl font-medium text-center hidden md:inline lg:inline">
+      <span className="text-black ml-2">
         ${(food.price * quantity).toFixed(2)}
-      </h2>
-
+      </span>
       <button
-        className="col-span-1 text-3xl font-medium transform transition duration-300 hover:scale-105 text-center"
+        className="text-xl font-medium text-red-500 ml-4"
         onClick={() => onRemoveItem(food._id)}
       >
         X
       </button>
-
-      <hr className="col-span-5 h-px bg-[#F3F4F6] border-0 my-8"></hr>
     </div>
   );
 };
 
-export default Transaction;
+export default NewTransaction;
