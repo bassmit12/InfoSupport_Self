@@ -22,6 +22,14 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/order", orderRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Infosupport backend server");
+});
+
+app.get("/ping", (req, res) => {
+  res.send("pong 🏓");
+});
+
 app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
 );
