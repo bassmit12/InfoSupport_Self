@@ -56,7 +56,7 @@ interface Table {
   password: string;
   capacity: number;
   isOccupied: boolean;
-  currentOrder?: string; // Assuming you will store the Order _id here
+  role: "User" | "Staff" | "Admin"; // Added role based on the Mongoose schema
   createdAt: string;
   updatedAt: string;
 }

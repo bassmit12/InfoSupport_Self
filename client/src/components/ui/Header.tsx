@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IonIcon } from "@ionic/react";
 import { cartOutline, cart } from "ionicons/icons";
 import Logo from "../../assets/Menu_Masters_Logo.png";

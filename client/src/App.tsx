@@ -12,15 +12,26 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Restricted from "./pages/Restricted.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
+import { Table } from "./types/types.ts";
 
-function getMainElement(user, isAdmin, isStaff) {
-  if (user) {
+function getMainElement(
+  user: Table | null,
+  isAdmin: boolean | null,
+  isStaff: boolean | null
+) {
+  if (user === null) {
+    return <Navigate to="/auth" />;
+  }
+
+  if ("role" in user) {
+    // Explicit check for the Table type
     if (isAdmin || isStaff) {
       return <KitchenPage />;
     } else {
       return <Navigate to="/restricted" />;
     }
   } else {
+    // Handle unexpected case (null or different type)
     return <Navigate to="/auth" />;
   }
 }
@@ -30,7 +41,7 @@ function App() {
   const isStaff = user && user.role === "Staff";
   const isAdmin = user && user.role === "Admin";
 
-  const mainElement = getMainElement(user, isAdmin, isStaff);
+  const mainElement = getMainElement(user as Table | null, isAdmin, isStaff);
 
   return (
     <Suspense fallback="loading">
