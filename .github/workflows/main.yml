@@ -7,7 +7,14 @@ on:
     branches: [main]
 
 jobs:
-  test-and-scan:
+  checkout-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+  setup-and-test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,9 +22,6 @@ jobs:
         node-version: ["18.x"] # Latest LTS version of Node.js
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -33,6 +37,12 @@ jobs:
         run: npm test
         working-directory: ./backend
 
+  sonarqube-scan:
+    runs-on: ubuntu-latest
+
+    needs: [checkout-code, setup-and-test]
+
+    steps:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
@@ -41,4 +51,4 @@ jobs:
         with:
           args: -X
 
-      # Deployment step will go here once you have secrets set up
+  # Deployment step will go here once you have secrets set up

@@ -23,7 +23,7 @@ app.set("socketio", io); // Set the io instance as part of the app for access in
 
 export { io }; // Create a new instance of the Socket.IO server
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

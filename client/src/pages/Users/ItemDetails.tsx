@@ -48,7 +48,9 @@ const ItemDetails = () => {
 
   useEffect(() => {
     // Create a WebSocket connection
-    const socket = io("http://localhost:5000");
+    const socket = io("http://localhost", {
+      transports: ["websocket", "polling"],
+    });
 
     // Listen for stockUpdate events
     socket.on("stockUpdate", (data) => {

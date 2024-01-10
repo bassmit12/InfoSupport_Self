@@ -4,7 +4,7 @@ import Header from "../../components/ui/Header";
 import useCustomToast from "../../hooks/useToast";
 import LoadingSpinner from "../../hooks/useLoadingSpinner";
 import { useTranslation } from "react-i18next";
-
+import io from "socket.io-client";
 import { CartItem } from "../../types/types";
 
 const TransactionPage: React.FC = () => {
@@ -126,6 +126,29 @@ const TransactionPage: React.FC = () => {
     // Call the fetchCartData function
     fetchCartData();
   }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+  useEffect(() => {
+    // Create a WebSocket connection
+    const socket = io("http://localhost", {
+      transports: ["websocket", "polling"],
+    });
+
+    // Listen for stockUpdate events
+    socket.on("stockUpdate", (data) => {
+      // Update the stock information in the cartItems state
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.food._id === data.foodId
+            ? { ...item, food: { ...item.food, stock: data.newStock } }
+            : item
+        )
+      );
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <>

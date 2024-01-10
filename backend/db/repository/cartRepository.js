@@ -101,6 +101,11 @@ const convertCartToOrder = async (userId) => {
     // Save the updated cart
     await cart.save();
 
+    io.emit("stockUpdate", {
+      foodId: foodItem._id,
+      newStock: foodItem.stock,
+    });
+
     return order;
   } catch (error) {
     throw error;
