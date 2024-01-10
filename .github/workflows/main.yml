@@ -22,6 +22,10 @@ jobs:
         node-version: ["18.x"] # Latest LTS version of Node.js
 
     steps:
+      - name: Clear npm cache
+        run: npm cache clean --force
+        working-directory: ${{ github.workspace }}/backend
+
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
