@@ -75,7 +75,7 @@ jobs:
         working-directory: ./client
 
       - name: Run Cypress E2E Tests
-        run: npm run cypress:run
+        run: npm run test
         working-directory: ./client
 
   sonarqube-scan:
