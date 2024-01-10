@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: ${{ github.workspace }}/backend/package-lock.json
 
   install-backend-dependencies:
     runs-on: ubuntu-latest
