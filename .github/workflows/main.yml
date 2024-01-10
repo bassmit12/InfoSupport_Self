@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["18.x"] # Latest LTS version of Node.js
+        node-version: ["14.x"] # Latest LTS version of Node.js
 
     steps:
       - name: Set up Node.js ${{ matrix.node-version }}
@@ -33,9 +33,6 @@ jobs:
     needs: [checkout-code, setup-node]
 
     steps:
-      - name: Check if backend directory exists
-        run: ls -al ./backend
-
       - name: Install Backend Dependencies
         run: npm ci
         working-directory: ./backend
