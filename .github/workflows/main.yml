@@ -1,4 +1,4 @@
-name: Node.js CI/CD with SonarQube
+name: Node.js CI/CD with SonarQube and Cypress E2E
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["18.x"] # Latest LTS version of Node.js
+        node-version: ["14.x"] # Choose the appropriate Node.js version
 
     steps:
       - name: Checkout code
@@ -42,10 +42,46 @@ jobs:
         run: npm test
         working-directory: ./backend
 
-  sonarqube-scan:
+  start-backend-frontend:
     runs-on: ubuntu-latest
 
     needs: backend-test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+        working-directory: ./client
+
+      - name: Start Backend and Frontend
+        run: |
+          npm start & # Start your backend server
+          (cd client && npm start) & # Start your frontend server
+          wait
+
+  cypress-e2e:
+    runs-on: ubuntu-latest
+
+    needs: start-backend-frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Cypress Dependencies
+        run: npm ci
+        working-directory: ./client
+
+      - name: Run Cypress E2E Tests
+        run: npm run cypress:run
+        working-directory: ./client
+
+  sonarqube-scan:
+    runs-on: ubuntu-latest
+
+    needs: cypress-e2e
 
     steps:
       - name: Checkout code
