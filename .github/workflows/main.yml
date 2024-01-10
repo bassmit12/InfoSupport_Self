@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["14.x"] # Choose the appropriate Node.js version
+        node-version: ["18.x"] # Choose the appropriate Node.js version
 
     steps:
       - name: Checkout code
