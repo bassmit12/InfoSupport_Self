@@ -28,8 +28,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: |
-            backend/node_modules
             backend/package-lock.json
+            backend/node_modules  # Add the node_modules path to cache dependencies
 
   install-backend-dependencies:
     runs-on: ubuntu-latest
@@ -64,5 +64,4 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: -X
-
-  # Deployment job can be added here once you have secrets set up
+# Deployment job can be added here once you have secrets set up
