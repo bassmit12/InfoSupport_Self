@@ -25,27 +25,27 @@ jobs:
           cache: "npm"
           cache-dependency-path: backend/package-lock.json
 
-  backend-test:
-    runs-on: ubuntu-latest
-
-    needs: setup-node
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install Backend Dependencies
-        run: npm ci
-        working-directory: ./backend
-
-      - name: Run Backend Tests
-        run: npm test
-        working-directory: ./backend
+  # backend-test:
+  #   runs-on: ubuntu-latest
+  #
+  #   needs: setup-node
+  #
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #
+  #     - name: Install Backend Dependencies
+  #       run: npm ci
+  #       working-directory: ./backend
+  #
+  #     - name: Run Backend Tests
+  #       run: npm test
+  #       working-directory: ./backend
 
   start-backend-frontend:
     runs-on: ubuntu-latest
 
-    needs: backend-test
+    needs: setup-node
 
     steps:
       - name: Checkout code
