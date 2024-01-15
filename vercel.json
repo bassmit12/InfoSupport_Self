@@ -16,10 +16,6 @@
       "dest": "/backend/routes/cartRoutes.js"
     },
     {
-      "src": "/api/users/(.*)",
-      "dest": "/backend/routes/userRoutes.js"
-    },
-    {
       "src": "/api/order/(.*)",
       "dest": "/backend/routes/orderRoutes.js"
     },

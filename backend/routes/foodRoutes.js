@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/feed", getFoodFeed);
 router.get("/item/:id", getItemInfo);
-router.put("/updateFood/:id", updateFood);
-router.post("/createFood", createFood);
+//router.put("/updateFood/:id", updateFood);
+//router.post("/createFood", createFood);
 
 export default router;
