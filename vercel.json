@@ -12,14 +12,6 @@
       "dest": "/backend/routes/foodRoutes.js"
     },
     {
-      "src": "/api/cart/(.*)",
-      "dest": "/backend/routes/cartRoutes.js"
-    },
-    {
-      "src": "/api/order/(.*)",
-      "dest": "/backend/routes/orderRoutes.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/backend/server.js"
     }
