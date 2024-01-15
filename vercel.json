@@ -30,7 +30,7 @@
   ],
   "env": {
     "NODE_ENV": "production",
-    "PORT": 5002,
+    "PORT": "5002",
     "MONGODB_URI": "mongodb+srv://bassmit03:bassmit03@data.xciflqt.mongodb.net/?retryWrites=true&w=majority",
     "JWT_SECRET": "jwtSecret",
     "VERCEL_ENV": "@production",
