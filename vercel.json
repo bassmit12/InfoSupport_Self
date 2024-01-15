@@ -1,0 +1,44 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/food/(.*)",
+      "dest": "/backend/routes/foodRoutes.js"
+    },
+    {
+      "src": "/api/cart/(.*)",
+      "dest": "/backend/routes/cartRoutes.js"
+    },
+    {
+      "src": "/api/users/(.*)",
+      "dest": "/backend/routes/userRoutes.js"
+    },
+    {
+      "src": "/api/order/(.*)",
+      "dest": "/backend/routes/orderRoutes.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/backend/server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": 5002,
+    "MONGODB_URI": "mongodb+srv://bassmit03:bassmit03@data.xciflqt.mongodb.net/?retryWrites=true&w=majority",
+    "JWT_SECRET": "jwtSecret",
+    "VERCEL_ENV": "@production",
+    "REACT_APP_BASE_URL": "https://your-react-app.vercel.app"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
