@@ -1,4 +1,51 @@
+// SignUpCard.tsx
+
+import React, { useState } from "react";
+import { signupUser } from "../../utils/api";
+import useCustomToast from "../../hooks/useToast";
+import LoadingSpinner from "../../hooks/useLoadingSpinner";
+
 const SignUpCard = () => {
+  const { showSuccessToast, showErrorToast } = useCustomToast();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    tableNumber: 0,
+    capacity: 0,
+    username: "",
+    password: "",
+    confirmPassword: "",
+    role: "User",
+  });
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      // Add validation or other necessary checks here before making the request
+      if (formData.password !== formData.confirmPassword) {
+        showErrorToast("Passwords do not match");
+        return;
+      }
+
+      const response = await signupUser(formData);
+
+      if (response.code === "success") {
+        showSuccessToast("Account created successfully");
+        // Optionally, you can redirect the user to the login page or perform other actions
+      } else {
+        showErrorToast("Error creating account. Please try again.");
+        console.error("Signup error:", response.error);
+      }
+    } catch (error) {
+      showErrorToast("Unexpected error during signup. Please try again.");
+      console.error("Unexpected error during signup:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -7,15 +54,62 @@ const SignUpCard = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-red-500 md:text-2xl ">
               Create an account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSignup}>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-red-500">
+                  Table Number
+                </label>
+                <input
+                  type="number"
+                  name="tableNumber"
+                  id="tableNumber"
+                  value={formData.tableNumber}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      tableNumber: Number(e.target.value),
+                    }))
+                  }
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 outline-none"
+                  placeholder="Table Number"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-red-500">
+                  Capacity
+                </label>
+                <input
+                  type="number"
+                  name="capacity"
+                  id="capacity"
+                  value={formData.capacity}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      capacity: Number(e.target.value),
+                    }))
+                  }
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 outline-none"
+                  placeholder="Capacity"
+                  required
+                />
+              </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-red-500">
                   Username
                 </label>
                 <input
-                  type="username"
+                  type="text"
                   name="username"
                   id="username"
+                  value={formData.username}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      username: e.target.value,
+                    }))
+                  }
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 outline-none"
                   placeholder="Username"
                   required
@@ -29,6 +123,13 @@ const SignUpCard = () => {
                   type="password"
                   name="password"
                   id="password"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      password: e.target.value,
+                    }))
+                  }
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 outline-none"
                   required
@@ -36,44 +137,36 @@ const SignUpCard = () => {
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-red-500">
-                  Confirm password
+                  Confirm Password
                 </label>
                 <input
-                  type="confirm-password"
-                  name="confirm-password"
-                  id="confirm-password"
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      confirmPassword: e.target.value,
+                    }))
+                  }
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 outline-none"
                   required
                 />
               </div>
               <div className="flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="terms"
-                    aria-describedby="terms"
-                    type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 outline-none"
-                    required
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label className="font-light text-gray-500 ">
-                    I accept the{" "}
-                    <a
-                      className="font-medium text-red-500 hover:underline "
-                      href="#"
-                    >
-                      Terms and Conditions
-                    </a>
-                  </label>
-                </div>
+                {/* Checkbox for terms and conditions */}
               </div>
               <button
                 type="submit"
                 className="w-full text-white bg-red-500 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center outline-none"
               >
-                Create an account
+                {loading ? (
+                  <LoadingSpinner size={20} color="#ffffff" />
+                ) : (
+                  "Create an account"
+                )}
               </button>
               <p className="text-sm font-light text-gray-500 ">
                 Already have an account?{" "}

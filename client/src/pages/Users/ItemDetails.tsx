@@ -6,10 +6,9 @@ import ItemDetails_Skeleton from "../../components/Skeletons/ItemDetails_Skeleto
 import useCustomToast from "../../hooks/useToast.ts";
 import { FoodItem } from "../../types/types";
 import { useTranslation } from "react-i18next";
-import { getFoodItemInfo } from "../../utils/api.ts";
+import { getFoodItemInfo, addToCart } from "../../utils/api.ts";
 import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
-import io from "socket.io-client";
 
 const ItemDetails = () => {
   const [foodItem, setFoodItem] = useState<FoodItem | null>(null);
@@ -48,27 +47,24 @@ const ItemDetails = () => {
 
   const handleOrderNow = async () => {
     try {
-      const response = await fetch("/api/cart/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          foodId: foodItem?._id,
-          quantity: quantity,
-          notes: notes,
-        }),
-      });
+      const params = {
+        foodId: foodItem?._id,
+        quantity: quantity,
+        notes: notes,
+      };
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const response = await addToCart(params); // Use the new request
+
+      if (response.code === "success") {
+        showSuccessToast("Item added to the cart successfully.");
+        // Optionally handle successful addition to the cart (e.g., show a success message)
+      } else {
+        showErrorToast("Error adding item to the cart. Please try again.");
+        // Handle the error (e.g., show an error message)
+        console.error("Error adding item to cart:", response.error);
       }
-      showSuccessToast("Item added to the cart successfully.");
-
-      // Optionally handle successful addition to the cart (e.g., show a success message)
     } catch (error) {
       showErrorToast("Error adding item to the cart. Please try again.");
-      // Handle the error (e.g., show an error message)
       console.error("Error adding item to cart:", error);
     }
   };

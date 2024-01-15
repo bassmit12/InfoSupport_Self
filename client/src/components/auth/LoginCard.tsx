@@ -4,6 +4,7 @@ import authScreenAtom from "../../atoms/authAtom";
 import userAtom from "../../atoms/userAtom";
 import useCustomToast from "../../hooks/useToast";
 import LoadingSpinner from "../../hooks/useLoadingSpinner";
+import { loginUser } from "../../utils/api";
 
 export default function LoginCard() {
   const [showPassword] = useState(false); //add SetShowPassword if you want to make the text visible
@@ -20,31 +21,17 @@ export default function LoginCard() {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(inputs),
-      });
-      const data = await res.json();
 
-      if (data.error) {
-        console.error(data.error);
-        return;
+      const response = await loginUser(inputs); // Use the new request
+
+      if (response.code === "success") {
+        showSuccessToast("Logged in successfully");
+        localStorage.setItem("user-threads", JSON.stringify(response.data));
+        setUser(response.data);
+      } else {
+        showErrorToast("Error while logging in");
+        console.error(response.error);
       }
-
-      if (!res.ok) {
-        console.error(`Error: ${res.status} - ${res.statusText}`);
-        const data = await res.json();
-        console.error("Server response:", data);
-        return;
-      }
-
-      showSuccessToast("Logged in successfully");
-      localStorage.setItem("user-threads", JSON.stringify(data));
-      console.log(localStorage.getItem("user-threads"));
-      setUser(data);
     } catch (error) {
       showErrorToast("Error while logging in");
       console.error(error);

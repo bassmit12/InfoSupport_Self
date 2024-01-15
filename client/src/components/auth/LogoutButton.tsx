@@ -2,30 +2,26 @@ import { useSetRecoilState } from "recoil";
 import userAtom from "../../atoms/userAtom.js";
 import { FiLogOut } from "react-icons/fi";
 
+import { logoutUser } from "../../utils/api"; // Import the new request
+
 const LogoutButton = () => {
   const setUser = useSetRecoilState(userAtom);
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("/api/users/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
+      const response = await logoutUser(); // Use the new request
 
-      if (data.error) {
-        console.error(data.error);
-        return;
+      if (response.code === "success") {
+        localStorage.removeItem("user-threads");
+        setUser(null);
+      } else {
+        console.error(response.error);
       }
-
-      localStorage.removeItem("user-threads");
-      setUser(null);
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
     <button onClick={handleLogout}>
       <FiLogOut size={20} />
