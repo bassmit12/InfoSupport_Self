@@ -1,7 +1,6 @@
 import Cart from "../models/cartModel.js";
 import Order from "../models/orderModel.js";
 import Food from "../models/foodModel.js";
-import { io } from "../../server.js";
 
 const getCartByUserId = async (userId) => {
   try {
@@ -68,11 +67,6 @@ const convertCartToOrder = async (userId) => {
       if (foodItem) {
         foodItem.stock -= quantity;
         await foodItem.save();
-
-        io.emit("stockUpdate", {
-          foodId: foodItem._id,
-          newStock: foodItem.stock,
-        });
       } else {
         throw new Error(`Food item with ID ${foodId} not found`);
       }
@@ -100,11 +94,6 @@ const convertCartToOrder = async (userId) => {
 
     // Save the updated cart
     await cart.save();
-
-    io.emit("stockUpdate", {
-      foodId: foodItem._id,
-      newStock: foodItem.stock,
-    });
 
     return order;
   } catch (error) {

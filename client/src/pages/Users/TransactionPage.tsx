@@ -127,29 +127,6 @@ const TransactionPage: React.FC = () => {
     fetchCartData();
   }, []); // Empty dependency array ensures the effect runs once after the initial render
 
-  useEffect(() => {
-    // Create a WebSocket connection
-    const socket = io("http://localhost", {
-      transports: ["websocket", "polling"],
-    });
-
-    // Listen for stockUpdate events
-    socket.on("stockUpdate", (data) => {
-      // Update the stock information in the cartItems state
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item.food._id === data.foodId
-            ? { ...item, food: { ...item.food, stock: data.newStock } }
-            : item
-        )
-      );
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
   return (
     <>
       <Header />

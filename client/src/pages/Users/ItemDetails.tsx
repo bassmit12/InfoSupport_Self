@@ -46,24 +46,6 @@ const ItemDetails = () => {
     }
   }, [quantity, foodItem]);
 
-  useEffect(() => {
-    // Create a WebSocket connection
-    const socket = io("http://localhost", {
-      transports: ["websocket", "polling"],
-    });
-
-    // Listen for stockUpdate events
-    socket.on("stockUpdate", (data) => {
-      console.log("Stock updated:", data);
-      // Handle the stock update on the client side
-    });
-
-    // Clean up the socket connection when the component unmounts
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
   const handleOrderNow = async () => {
     try {
       const response = await fetch("/api/cart/add", {
