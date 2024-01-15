@@ -1,15 +1,38 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "backend/**/*.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/food/*": {
+      "runtime": "@vercel/node"
+    },
+    "api/cart/*": {
+      "runtime": "@vercel/node"
+    },
+    "api/users/*": {
+      "runtime": "@vercel/node"
+    },
+    "api/order/*": {
+      "runtime": "@vercel/node"
+    },
+    "backend/server": {
+      "runtime": "@vercel/express"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/food/(.*)",
-      "dest": "/backend/routes/foodRoutes.js"
+      "dest": "/api/food/$1"
+    },
+    {
+      "src": "/api/cart/(.*)",
+      "dest": "/api/cart/$1"
+    },
+    {
+      "src": "/api/users/(.*)",
+      "dest": "/api/users/$1"
+    },
+    {
+      "src": "/api/order/(.*)",
+      "dest": "/api/order/$1"
     },
     {
       "src": "/(.*)",
