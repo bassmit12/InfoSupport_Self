@@ -2,18 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.js",
-      "use": "@vercel/node"
+      "src": "server.js",
+      "use": "@now/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/food/(.*)",
-      "dest": "./routes/foodRoutes.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "./server.js"
+      "dest": "server.js"
     }
   ]
 }

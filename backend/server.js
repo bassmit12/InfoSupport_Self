@@ -48,6 +48,10 @@ app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
 );
 
+app.get("/ping", (req, res) => {
+  res.send("pong 🏓");
+});
+
 // Add a WebSocket connection event
 io.on("connection", (socket) => {
   console.log("A user connected");
