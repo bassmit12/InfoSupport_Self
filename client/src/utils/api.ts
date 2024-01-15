@@ -1,6 +1,6 @@
 import axios from "axios";
 import { requestHandler } from "./RequestHandler";
-import { FoodItem } from "../types/types";
+import { CartItem, FoodItem, Table } from "../types/types";
 
 interface FoodInfoParams {
   id: string;
@@ -33,7 +33,7 @@ export const addToCart = requestHandler<CartAddParams, void>((params) =>
   axios.post("/api/cart/add", params)
 );
 
-export const loginUser = requestHandler<LoginParams, void>((params) =>
+export const loginUser = requestHandler<LoginParams, Table>((params) =>
   axios.post("/api/users/login", params)
 );
 
@@ -43,4 +43,25 @@ export const logoutUser = requestHandler<void, void>(() =>
 
 export const signupUser = requestHandler<SignupParams, void>((params) =>
   axios.post("/api/users/signup", params)
+);
+
+export const fetchFoodItems = requestHandler<void, FoodItem[]>(() =>
+  axios.get("/api/food/feed")
+);
+
+export const fetchCartData = requestHandler<void, { items: CartItem[] }>(
+  (params) => axios.get("/api/cart")
+);
+
+export const placeOrder = requestHandler<void, void>(() =>
+  axios.post("/api/cart/convert-to-order")
+);
+
+export const updateQuantity = requestHandler<
+  { foodId: string; quantity: number },
+  void
+>((params) => axios.put("/api/cart/update-quantity", params));
+
+export const removeItem = requestHandler<{ foodId: string }, void>((params) =>
+  axios.delete("/api/cart/remove", { data: params })
 );

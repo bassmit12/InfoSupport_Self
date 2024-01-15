@@ -8,6 +8,7 @@ import { LANGUAGES } from "../../utils/constants/Languages";
 import LogoutButton from "../auth/LogoutButton";
 import { useRecoilValue } from "recoil";
 import userAtom from "../../atoms/userAtom";
+import { fetchCartData } from "../../utils/api";
 
 const Header = () => {
   const { i18n } = useTranslation();
@@ -18,18 +19,12 @@ const Header = () => {
 
   useEffect(() => {
     // Fetch cart data from the backend API endpoint
-    const fetchCartData = async () => {
+    const fetchCartDataCall = async () => {
       try {
-        const response = await fetch("/api/cart", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetchCartData(); // Use the new request
 
-        if (response.ok) {
-          const data = await response.json();
-          setCartItemCount(data.items.length || 0);
+        if (response.code === "success") {
+          setCartItemCount(response.data.items.length || 0);
           // Trigger a re-render by toggling the updateTrigger state
           setUpdateTrigger((prev) => !prev);
         } else {
@@ -41,7 +36,7 @@ const Header = () => {
     };
 
     // Call the fetchCartData function
-    fetchCartData();
+    fetchCartDataCall();
   }, [updateTrigger]); // Empty dependency array ensures the effect runs once after the initial render
 
   const getCartIcon = () => {

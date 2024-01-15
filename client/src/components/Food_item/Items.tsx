@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
 import { useTranslation } from "react-i18next";
-
+import { fetchFoodItems } from "../../utils/api";
 import { FoodItem } from "../../types/types";
 
 const Items = () => {
@@ -14,15 +14,13 @@ const Items = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/food/feed");
-        const data = await res.json();
+        const response = await fetchFoodItems(); // Use the new request
 
-        if (res.ok) {
-          setFoodItems(data as FoodItem[]); // Cast the data to an array of FoodItem
+        if (response.code === "success") {
+          setFoodItems(response.data); // Update state with fetched food items
         } else {
-          throw new Error(data.error || "Error fetching food items");
+          throw new Error("Error fetching food items");
         }
-        console.log(setFoodItems);
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error fetching food items:", error.message);

@@ -4,8 +4,13 @@ import Header from "../../components/ui/Header";
 import useCustomToast from "../../hooks/useToast";
 import LoadingSpinner from "../../hooks/useLoadingSpinner";
 import { useTranslation } from "react-i18next";
-import io from "socket.io-client";
 import { CartItem } from "../../types/types";
+import {
+  fetchCartData,
+  placeOrder,
+  removeItem,
+  updateQuantity,
+} from "../../utils/api";
 
 const TransactionPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -20,21 +25,18 @@ const TransactionPage: React.FC = () => {
         return;
       }
       setLoading(true);
-      const response = await fetch("/api/cart/convert-to-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (response.ok) {
+      // Use the new placeOrder request
+      const response = await placeOrder();
+
+      if (response.code === "success") {
         // Clear the local cart items on successful conversion
         setCartItems([]);
         showSuccessToast("Order placed successfully!");
         console.log("Order successfully placed!");
       } else {
         showErrorToast("Something went wrong while placing your order");
-        console.error("Error placing order:", response.statusText);
+        console.error("Error placing order:", response.error?.message);
       }
     } catch (error) {
       showErrorToast("Something went wrong while placing your order");
@@ -47,27 +49,17 @@ const TransactionPage: React.FC = () => {
 
   const onUpdateQuantity = async (foodId: string, newQuantity: number) => {
     try {
-      const response = await fetch("/api/cart/update-quantity", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          foodId,
-          quantity: newQuantity,
-        }),
-      });
+      // Use the new updateQuantity request
+      const response = await updateQuantity({ foodId, quantity: newQuantity });
 
-      console.log(foodId, newQuantity);
-
-      if (response.ok) {
+      if (response.code === "success") {
         setCartItems((prevItems) =>
           prevItems.map((item) =>
             item.food._id === foodId ? { ...item, quantity: newQuantity } : item
           )
         );
       } else {
-        console.error("Error updating quantity:", response.statusText);
+        console.error("Error updating quantity:", response.error?.message);
       }
     } catch (error) {
       console.error("Error updating quantity:", error);
@@ -76,25 +68,17 @@ const TransactionPage: React.FC = () => {
 
   const onRemoveItem = async (foodId: string) => {
     try {
-      // Make a DELETE request to remove the item
-      const response = await fetch("/api/cart/remove", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          foodId,
-        }),
-      });
+      // Use the new removeItem request
+      const response = await removeItem({ foodId });
 
-      if (response.ok) {
+      if (response.code === "success") {
         // Update the local state by filtering out the removed item
         setCartItems((prevItems) =>
           prevItems.filter((item) => item.food._id !== foodId)
         );
       } else {
         // Handle error response from the API
-        console.error("Error removing item:", response.statusText);
+        console.error("Error removing item:", response.error?.message);
       }
     } catch (error) {
       console.error("Error removing item:", error);
@@ -103,17 +87,12 @@ const TransactionPage: React.FC = () => {
 
   useEffect(() => {
     // Fetch cart data from the backend API endpoint
-    const fetchCartData = async () => {
+    const fetchCartDataCall = async () => {
       try {
-        const response = await fetch("/api/cart", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetchCartData();
 
-        if (response.ok) {
-          const data = await response.json();
+        if (response.code === "success") {
+          const data = response.data;
           setCartItems(data.items || []); // Handle null or undefined items
         } else {
           // Handle error response from the API
@@ -124,7 +103,7 @@ const TransactionPage: React.FC = () => {
     };
 
     // Call the fetchCartData function
-    fetchCartData();
+    fetchCartDataCall();
   }, []); // Empty dependency array ensures the effect runs once after the initial render
 
   return (
