@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "../backend/db/connectDB.js";
+import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
 import foodRoutes from "./routes/foodRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
