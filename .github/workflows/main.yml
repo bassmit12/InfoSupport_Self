@@ -63,9 +63,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./client
           browser: chrome
-          start: npm run dev
+          start: cd .\client\ | npm run dev
         env:
           CYPRESS_baseUrl: http://localhost:3000
 
