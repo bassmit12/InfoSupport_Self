@@ -89,6 +89,8 @@ jobs:
         with:
           working-directory: ./client
           browser: chrome
+        env:
+          CYPRESS_baseUrl: http://localhost:3000
 
   sonarqube-scan:
     runs-on: ubuntu-latest
