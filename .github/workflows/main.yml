@@ -64,8 +64,10 @@ jobs:
         with:
           working-directory: ./client
           browser: chrome
+          timeout: 10000
         env:
           CYPRESS_baseUrl: http://localhost:3000
+        
 
   jest-tests:
     runs-on: ubuntu-latest
