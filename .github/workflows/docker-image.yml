@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Build Docker Image
         run: docker build -t backend-server:latest ./backend
@@ -23,4 +23,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push to Docker Hub
-        run: docker push bassmit123/backend-server:latest
+        run: docker push docker.io/library/backend-server:latest
