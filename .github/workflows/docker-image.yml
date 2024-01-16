@@ -22,5 +22,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Push to Docker Hub
-        run: docker push docker.io/library/backend-server:latest
+      - name: Push Docker Image to Docker Hub
+        run: docker push backend-server:latest
