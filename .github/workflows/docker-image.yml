@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker Image
-        run: docker build -t your-image-name:latest ./backend
+        run: docker build -t backend-server:latest ./backend
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -23,4 +23,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push to Docker Hub
-        run: docker push your-image-name:latest
+        run: docker push backend-server:latest
