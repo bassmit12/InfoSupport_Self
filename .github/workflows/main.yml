@@ -60,22 +60,12 @@ jobs:
         run: npm ci
         working-directory: ./backend
 
-      - name: Start Backend
-        run: npm run dev &
-        working-directory: ./backend
-
-      - name: Start Frontend
-        run: npm run dev &
-        working-directory: ./client
-
-      - name: Wait for services to start
-        run: sleep 20
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./client
           browser: chrome
+          start: npm run dev
         env:
           CYPRESS_baseUrl: http://localhost:3000
 
