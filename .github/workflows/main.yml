@@ -64,7 +64,6 @@ jobs:
         with:
           working-directory: ./client
           browser: chrome
-          timeout: 10000
         env:
           CYPRESS_baseUrl: http://localhost:3000
         
