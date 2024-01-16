@@ -43,11 +43,15 @@ jobs:
         working-directory: ./backend
 
       - name: Start Backend
-        run: npm start
+        run: |
+          npm start &
+          sleep 10
         working-directory: ./backend
 
       - name: Start Frontend
-        run: npm run dev
+        run: |
+          npm run dev &
+          sleep 10
         working-directory: ./client
 
   cypress-e2e:
