@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  setup-node:
+  setup-and-test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,25 +33,11 @@ jobs:
         run: npm ci
         working-directory: ./backend
 
-      - name: Start Backend
-        run: npm start &
-        working-directory: ./backend
-
-      - name: Start Frontend
-        run: npm run dev &
-        working-directory: ./client
-
-      - name: Wait for services to start
-        run: sleep 20
-
-  cypress-e2e:
-    runs-on: ubuntu-latest
-
-    needs: setup-node
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Start Backend and Frontend
+        run: |
+          npm start --prefix ./backend &
+          npm run dev --prefix ./client &
+          sleep 20
 
       - name: Install Cypress Dependencies
         run: npm ci
@@ -68,7 +54,7 @@ jobs:
   jest-tests:
     runs-on: ubuntu-latest
 
-    needs: setup-node
+    needs: setup-and-test
 
     steps:
       - name: Checkout code
