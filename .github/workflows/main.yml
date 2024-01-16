@@ -1,4 +1,4 @@
-name: Node.js CI/CD with SonarQube, Cypress E2E, and Docker Build
+name: Node.js CI/CD with SonarQube, JEST, Cypress E2E, and Docker Build
 
 on:
   push:
@@ -88,6 +88,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./client
+          browser: chrome
 
   sonarqube-scan:
     runs-on: ubuntu-latest
