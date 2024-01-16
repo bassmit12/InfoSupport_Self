@@ -60,11 +60,16 @@ jobs:
         run: npm ci
         working-directory: ./backend
 
+      - name: Start Backend Server
+        working-directory: ./backend
+        run: npm run dev &
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          working-directory: ./client
           browser: chrome
-          start: cd .\client\ | npm run dev
+          start: npm run dev
         env:
           CYPRESS_baseUrl: http://localhost:3000
 
