@@ -61,7 +61,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Start Backend
-        run: npm start &
+        run: npm run dev &
         working-directory: ./backend
 
       - name: Start Frontend
