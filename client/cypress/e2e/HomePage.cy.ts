@@ -3,7 +3,7 @@
 describe("FrontPage Component", () => {
   beforeEach(() => {
     // Visit the page before each test
-    cy.visit("http://localhost:3000/", { timeout: 10000 });
+    cy.visit("http://localhost:3000/");
   });
 
   it("should render the FrontPage component", () => {

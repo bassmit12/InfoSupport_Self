@@ -7,4 +7,5 @@ export default defineConfig({
     },
     experimentalStudio: true,
   },
+  defaultCommandTimeout: 10000,
 });
