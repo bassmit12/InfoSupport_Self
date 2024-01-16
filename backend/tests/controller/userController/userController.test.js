@@ -6,15 +6,12 @@ import {
   updateUser,
 } from "../../../controller/userController.js"; // Replace with your actual file name
 import * as UserRepository from "../../../db/repository/userRepository.js";
-
-// Import your mock data
+import generateTokenAndSetCookie from "../../../helpers/generateTokenAndSetCookie.js";
 import { mockUserId, mockUser } from "./userControllerMocks.js";
 
-jest.mock("../../../helpers/generateTokenAndSetCookie.js", () => {
-  return jest.fn(() => {
-    console.log("Mocked generateTokenAndSetCookie function called");
-  });
-});
+require("dotenv").config();
+
+jest.mock("../../../helpers/generateTokenAndSetCookie.js");
 
 // Mocking the UserRepository functions
 jest.mock("../../../db/repository/userRepository.js");

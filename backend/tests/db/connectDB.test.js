@@ -1,5 +1,6 @@
 // test/db/connectDB.test.js
 const mongoose = require("mongoose");
+import { dotenv } from "dotenv";
 
 describe("MongoDB Memory Server", () => {
   test("should connect using MONGO_URI from environment", async () => {
