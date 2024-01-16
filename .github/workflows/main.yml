@@ -84,9 +84,8 @@ jobs:
         run: npm ci
         working-directory: ./client
 
-      - name: Run Cypress E2E Tests
-        run: npm run test
-        working-directory: ./client
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
 
   sonarqube-scan:
     runs-on: ubuntu-latest
