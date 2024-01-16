@@ -49,8 +49,8 @@ export const fetchFoodItems = requestHandler<void, FoodItem[]>(() =>
   axios.get("/api/food/feed")
 );
 
-export const fetchCartData = requestHandler<void, { items: CartItem[] }>(
-  (params) => axios.get("/api/cart")
+export const fetchCartData = requestHandler<void, { items: CartItem[] }>(() =>
+  axios.get("/api/cart")
 );
 
 export const placeOrder = requestHandler<void, void>(() =>
