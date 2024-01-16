@@ -1,6 +1,8 @@
 describe("Login Functionality", () => {
   it("should login with valid credentials", () => {
-    cy.visit("http://localhost:3000/auth");
+    cy.visit("http://127.0.0.1:3000/auth", { timeout: 10000 });
+  });
+});
 
     // Fill in the login form
     cy.get('input[placeholder="Username"]').type("Admin");
