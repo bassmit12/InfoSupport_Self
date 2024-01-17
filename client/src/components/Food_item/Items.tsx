@@ -1,23 +1,32 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
 import { useTranslation } from "react-i18next";
 import { fetchFoodItems } from "../../utils/api";
 import { FoodItem } from "../../types/types";
+import IngredientFilter from "./IngredientFilter";
 
 const Items = () => {
   const [menuTab, setMenuTab] = useState<string>("Breakfast");
-  const [foodItems, setFoodItems] = useState<FoodItem[]>([]); // Use the FoodItem interface for the state
+  const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [allIngredients, setAllIngredients] = useState<string[]>([]);
   const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchFoodItems(); // Use the new request
+        const response = await fetchFoodItems();
 
         if (response.code === "success") {
-          setFoodItems(response.data); // Update state with fetched food items
+          setFoodItems(response.data);
+
+          // Extract all unique ingredients from the fetched data and sort them alphabetically
+          const uniqueIngredients = Array.from(
+            new Set(response.data.flatMap((item) => item.ingredients))
+          ).sort();
+          setAllIngredients(uniqueIngredients);
         } else {
           throw new Error("Error fetching food items");
         }
@@ -39,9 +48,27 @@ const Items = () => {
     setMenuTab(type);
   };
 
-  const filteredFoodItems = foodItems.filter(
-    (item) => item.category === menuTab
-  );
+  const handleIngredientSelection = (ingredient: string) => {
+    setSelectedIngredients((prevIngredients) => {
+      if (prevIngredients.includes(ingredient)) {
+        // If ingredient is already selected, remove it from the list
+        return prevIngredients.filter((item) => item !== ingredient);
+      } else {
+        // If ingredient is not selected, add it to the list
+        return [...prevIngredients, ingredient];
+      }
+    });
+  };
+
+  const filteredFoodItems = foodItems.filter((item) => {
+    return (
+      item.category === menuTab &&
+      (selectedIngredients.length === 0 ||
+        selectedIngredients.every(
+          (ingredient) => !item.ingredients.includes(ingredient)
+        ))
+    );
+  });
 
   return (
     <section className="my-12 max-w-screen-xl mx-auto px-6">
@@ -81,6 +108,12 @@ const Items = () => {
         >
           {t("common:translation:Dinner")}
         </p>
+
+        <IngredientFilter
+          allIngredients={allIngredients} // Add the closing curly brace here
+          selectedIngredients={selectedIngredients}
+          onSelectIngredient={handleIngredientSelection}
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
         {loading ? (
