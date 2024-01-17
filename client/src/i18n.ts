@@ -9,7 +9,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 const getCurrentHost =
   import.meta.env.MODE === "development"
-    ? "http://localhost:3000"
+    ? "http://infosupport-backend-self.germanywestcentral.azurecontainer.io:5002"
     : "LINK TO PROD";
 
 i18n

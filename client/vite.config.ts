@@ -8,7 +8,8 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://localhost:5002", // Change the target to your actual server address
+        target:
+          "http://infosupport-backend-self.germanywestcentral.azurecontainer.io:5002", // Change the target to your actual server address
         changeOrigin: true,
         secure: false,
       },
