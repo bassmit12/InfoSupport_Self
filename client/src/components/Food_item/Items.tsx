@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "./Item";
 import Item_Skeleton from "./Item_Skeleton";
 import { useTranslation } from "react-i18next";

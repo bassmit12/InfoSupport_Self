@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import Checkbox from "../ui/Checkbox"; // Assuming you have a Checkbox component for handling selection
+import Checkbox from "../ui/Checkbox";
 
-const IngredientFilter = ({
+interface IngredientFilterProps {
+  allIngredients: string[];
+  selectedIngredients: string[];
+  onSelectIngredient: (ingredient: string) => void;
+}
+
+const IngredientFilter: React.FC<IngredientFilterProps> = ({
   allIngredients,
   selectedIngredients,
   onSelectIngredient,
@@ -37,14 +43,13 @@ const IngredientFilter = ({
         </svg>
       </button>
 
-      {/* Dropdown menu */}
       {isOpen && (
         <div
           id="ingredientDropdown"
           className="z-10 absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
         >
           <ul
-            className="py-2 text-sm "
+            className="py-2 text-sm"
             aria-labelledby="ingredientDropdownButton"
           >
             {allIngredients.map((ingredient) => (
