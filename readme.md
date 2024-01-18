@@ -20,8 +20,8 @@ Make sure you have the following installed on your machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/bassmi12/Infosupport_Tortillias.git
-   cd Infosupport_Tortillias
+   git clone https://github.com/bassmit12/InfoSupport_Self
+   cd InfoSupport_Self
    ```
    Check the frontend here:
    [frontend](https://github.com/bassmit12/InfoSupport_Self/tree/main/client#readme)
