@@ -13,6 +13,8 @@ RUN npm install
 # Copy the entire application to the working directory
 COPY . .
 
+COPY public/i18n /usr/src/app/i18n
+
 # Build the React app
 RUN npm run build
 

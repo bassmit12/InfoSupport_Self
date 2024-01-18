@@ -30,7 +30,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/order", orderRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Infosupport backend server 3");
+  res.send("Infosupport backend server updated");
 });
 
 app.listen(PORT, () =>

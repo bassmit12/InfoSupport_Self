@@ -7,10 +7,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 // have a look at the Quick start guide
 // for passing in lng and translations on init
 
-const getCurrentHost =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:3000"
-    : "http://localhost:3000";
+const getCurrentHost = "http://localhost:3000";
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -33,7 +30,7 @@ i18n
     ns: ["common", "menu"], // Add your namespaces here
     defaultNS: "common", // Set a default namespace
     backend: {
-      loadPath: `${getCurrentHost}/i18n/{{lng}}/{{ns}}.json`,
+      loadPath: `${getCurrentHost}/public/i18n/{{lng}}/{{ns}}.json`,
     },
   });
 

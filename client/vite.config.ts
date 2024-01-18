@@ -8,11 +8,15 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target:
-          "http://infosupport-backend-self.germanywestcentral.azurecontainer.io:5002", // Change the target to your actual server address
+        target: "http://localhost:5002", // Change the target to your actual server address
         changeOrigin: true,
         secure: false,
       },
     },
+    watch: {
+      usePolling: true,
+    },
+    host: true, // needed for the Docker Container port mapping to work
+    strictPort: true,
   },
 });
