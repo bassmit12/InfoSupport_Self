@@ -23,8 +23,9 @@ Make sure you have the following installed on your machine:
    git clone https://github.com/bassmit12/InfoSupport_Self
    cd InfoSupport_Self
    ```
-   Check the frontend here:
-   [frontend](https://github.com/bassmit12/InfoSupport_Self/tree/main/client#readme)
+
+Check the frontend here:
+[frontend](https://github.com/bassmit12/InfoSupport_Self/tree/main/client#readme)
 
 Check the backend here:
 [backend](https://github.com/bassmit12/InfoSupport_Self/tree/main/backend#readme)
