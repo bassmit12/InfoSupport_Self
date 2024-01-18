@@ -9,8 +9,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 const getCurrentHost =
   import.meta.env.MODE === "development"
-    ? "http://infosupport-backend-self.germanywestcentral.azurecontainer.io:5002"
-    : "LINK TO PROD";
+    ? "http://localhost:3000"
+    : "http://localhost:3000";
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
